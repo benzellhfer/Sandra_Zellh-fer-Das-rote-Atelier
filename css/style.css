@@ -718,20 +718,46 @@ main {
   transition: transform 0.4s ease;
 }
 
-/* Titel unten links auf hellem Schild (wie in der Skizze),
-   damit er auf jedem Foto lesbar ist */
+/* Ganz leichter weißer Schleier über dem Foto ("ausweißen"):
+   wirkt ruhiger und der Titel ist besser lesbar.
+   Stärke einstellen: die letzte Zahl (0.25) – 0 = kein Schleier, 1 = ganz weiß */
+.kachel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(251, 250, 243, 0.25);  /* Papierfarbe, leicht durchsichtig */
+  transition: opacity 0.3s ease;
+}
+
+/* Titel mittig auf der Kachel, auf hellem Schild */
 .kachel-titel {
   position: absolute;
-  bottom: 0.4rem;
-  left: 0.4rem;
+  z-index: 1;                    /* liegt über dem Schleier */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);  /* genau in die Mitte rücken */
   padding: 0.1rem 0.45rem;
   background-color: var(--farbe-papier);
   font-size: 0.8125rem;          /* am Handy etwas kleiner, die Kacheln sind kleiner */
   line-height: 1.4;
+  text-align: center;
   max-width: calc(100% - 0.8rem); /* nie breiter als die Kachel, langer Titel bricht um */
 }
 
-/* Beim Darüberfahren (nur bei Links): Foto zoomt leicht, Titel wird rot */
+/* Kachel "Danke": Fläche in Atelierrot, ohne Schleier */
+.kachel-danke .kachel {
+  background-color: var(--farbe-atelierrot);
+}
+
+.kachel-danke .kachel::after {
+  display: none;
+}
+
+/* Beim Darüberfahren (nur bei Links): Schleier weg, Foto zoomt leicht, Titel wird rot */
+a.kachel:hover::after {
+  opacity: 0;
+}
+
 a.kachel:hover img {
   transform: scale(1.04);
 }
@@ -756,8 +782,6 @@ a.kachel:hover .kachel-titel {
   }
 
   .kachel-titel {
-    bottom: 0.6rem;
-    left: 0.6rem;
     padding: 0.2rem 0.6rem;
     font-size: 0.9375rem;
   }
