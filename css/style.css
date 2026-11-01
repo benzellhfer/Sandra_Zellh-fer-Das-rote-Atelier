@@ -14,6 +14,7 @@
    10. Lightbox (Großansicht, auch für die Galerien)
    11. Galerien: Keramik, Skulpturen, Malerei
    12. Über mich und Kontakt
+   13. Impressum und Datenschutz
 
    "Mobile First": Die normalen Regeln gelten fürs Handy.
    Regeln in "@media (min-width: …)" gelten zusätzlich für größere Bildschirme.
@@ -1172,4 +1173,35 @@ html.lightbox-offen {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
   }
+}
+
+
+/* --------------------------------------------------------------------------
+   13. Impressum und Datenschutz
+   Schlichte Textseiten: schmale Spalte, kleinere Zwischenüberschriften
+   -------------------------------------------------------------------------- */
+.rechtstext {
+  max-width: 42rem;
+  overflow-wrap: break-word;     /* lange Wörter am Handy umbrechen */
+}
+
+.rechtstext h2 {
+  margin-top: 2.25rem;
+  font-size: 1.1875rem;
+  font-weight: 600;
+}
+
+.rechtstext ul {
+  padding-left: 1.25rem;
+  margin: 0 0 1em;
+}
+
+.rechtstext li {
+  margin-bottom: 0.25rem;
+}
+
+.rechtstext-stand {
+  margin-top: 2.5rem;
+  font-family: var(--schrift-akzent);
+  font-size: 0.8125rem;
 }
