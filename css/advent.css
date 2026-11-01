@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Adventsgestaltung
+   --------------------------------------------------------------------------
+   Alles, was nur zur Adventsaktion gehört, steht hier.
+   Nach der Aktion: in index.html die Zeile mit "advent.css" und den
+   Block "ADVENTS-BANNER" löschen – fertig.
+   ========================================================================== */
+
+/* Roter Balken unter dem Header (wie im Entwurf) */
+.advent-banner {
+  padding: 0.6rem var(--abstand-rand);
+  background-color: var(--farbe-atelierrot);
+  color: var(--farbe-papier);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.advent-banner p {
+  margin: 0;
+}
+
+/* Gelb markierter Platzhalter im Banner: dunkle Schrift, damit lesbar */
+.advent-banner .platzhalter {
+  color: var(--farbe-anthrazit);
+  padding-inline: 0.4rem;
+}

@@ -9,6 +9,7 @@
    5. Inhaltsbereich
    6. Footer
    7. Platzhalter-Markierung (später entfernbar)
+   8. Startseite: Slideshow, Text, Kacheln
 
    "Mobile First": Die normalen Regeln gelten fürs Handy.
    Regeln in "@media (min-width: …)" gelten zusätzlich für größere Bildschirme.
@@ -49,6 +50,8 @@
   --farbe-papier: #FBFAF3;       /* Seitenhintergrund */
   --farbe-formularfeld: #FFFFFF; /* nur für Ausnahmen wie Eingabefelder */
   --farbe-linie: #E6E1D6;        /* feine Trennlinien (leicht dunkler als Papier) */
+  --farbe-flaeche: #EDE7DC;      /* warmes Beige hinter Bildern und für Kacheln */
+  --farbe-atelierrot-dunkel: #85190F; /* Atelierrot beim Darüberfahren mit der Maus */
 
   /* Schriften */
   --schrift-text: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -453,4 +456,301 @@ main {
 .platzhalter {
   background-color: #FFF3A6;
   outline: 1px dashed #C9A800;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Startseite
+   -------------------------------------------------------------------------- */
+
+/* Am Handy beginnt die Slideshow direkt unter dem Banner (kein Abstand oben) */
+.startseite {
+  padding-top: 0;
+}
+
+/* Oberer Bereich: am Handy untereinander (Slideshow zuerst, dann Text) */
+.start-oben {
+  display: grid;
+  gap: 2rem;
+}
+
+/* ---- Slideshow ---- */
+
+/* Am Handy geht die Slideshow über die volle Bildschirmbreite
+   (der negative Rand hebt den Abstand des Containers auf) */
+.slideshow {
+  margin-inline: calc(-1 * var(--abstand-rand));
+}
+
+.slideshow-fenster {
+  position: relative;            /* damit die Pfeile sich daran ausrichten */
+  container-type: inline-size;   /* erlaubt "cqw" = Prozent der Slideshow-Breite (für die Pfeile) */
+}
+
+/* Die "Spur": alle Bilder nebeneinander, man scrollt/wischt waagrecht.
+   scroll-snap sorgt dafür, dass immer genau ein Bild einrastet. */
+.slideshow-spur {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain; /* verhindert "Zurück"-Wischgeste des Browsers */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;         /* Scrollbalken ausblenden (Firefox) */
+}
+
+.slideshow-spur::-webkit-scrollbar {
+  display: none;                 /* Scrollbalken ausblenden (Safari, Chrome) */
+}
+
+/* Ein einzelnes Bild der Slideshow */
+.dia {
+  position: relative;
+  flex: 0 0 100%;                /* jedes Bild ist genau so breit wie das Fenster */
+  scroll-snap-align: start;
+}
+
+.dia img {
+  width: 100%;
+  background-color: var(--farbe-flaeche); /* Beige neben Fotos, die nicht quadratisch sind */
+  aspect-ratio: 1 / 1;           /* quadratisch */
+  object-fit: contain;           /* ganzes Werk sichtbar, nichts abgeschnitten */
+}
+
+/* "Nr. 07" und Beschreibung direkt unter dem Bild (verdeckt das Werk nicht) */
+.dia-beschriftung {
+  margin: 0;
+  padding: 0.5rem var(--abstand-rand) 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.9rem;
+  background-color: var(--farbe-papier);
+  line-height: 1.3;
+}
+
+.dia-nummer {
+  font-family: var(--schrift-akzent);
+  font-size: 1.625rem;
+  font-weight: 500;
+  color: var(--farbe-atelierrot);
+}
+
+.dia-beschreibung {
+  font-size: 0.875rem;
+}
+
+/* Runde Pfeile links und rechts (wie im Entwurf), mittig auf dem Bild.
+   Das Bild ist quadratisch, seine Mitte liegt also bei der halben Breite (50cqw). */
+.slideshow-pfeil {
+  position: absolute;
+  top: 50cqw;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;                /* groß genug für den Finger */
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(74, 67, 64, 0.75);  /* Anthrazit, leicht durchsichtig */
+  cursor: pointer;
+}
+
+.slideshow-pfeil:hover {
+  background-color: var(--farbe-anthrazit);
+}
+
+.slideshow-pfeil svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: var(--farbe-papier);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.slideshow-pfeil-zurueck {
+  left: 0.75rem;
+}
+
+.slideshow-pfeil-weiter {
+  right: 0.75rem;
+}
+
+/* Zeile unter dem Bild: "Finde deine Nummer" + Pause-Knopf */
+.slideshow-steuerung {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--abstand-rand);
+  margin-top: 0.5rem;
+}
+
+.slideshow-hinweis {
+  margin: 0;
+  font-family: var(--schrift-akzent);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.slideshow-pause {
+  min-height: 2.75rem;
+  padding: 0 0 0 1rem;
+  border: 0;
+  background: none;
+  color: var(--farbe-anthrazit);
+  font-family: var(--schrift-akzent);
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.slideshow-pause:hover {
+  color: var(--farbe-atelierrot);
+}
+
+/* Nummern-Knöpfe 01–24: am Handy 8 pro Reihe */
+.slideshow-nummern {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.375rem;
+  padding-inline: var(--abstand-rand);
+}
+
+.slideshow-nummer {
+  min-height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--farbe-linie);
+  border-radius: 2px;
+  background: none;
+  color: var(--farbe-anthrazit);
+  font-family: var(--schrift-akzent);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.slideshow-nummer:hover {
+  border-color: var(--farbe-atelierrot);
+  color: var(--farbe-atelierrot);
+}
+
+/* Die Nummer des gerade gezeigten Kerzenhalters: rot gefüllt */
+.slideshow-nummer[aria-current="true"] {
+  background-color: var(--farbe-atelierrot);
+  border-color: var(--farbe-atelierrot);
+  color: var(--farbe-papier);
+}
+
+/* ---- Textkarte ---- */
+.start-text h1 {
+  font-size: clamp(2rem, 7vw, 3rem);
+}
+
+/* ---- Kacheln ---- */
+.kacheln {
+  margin-top: 4rem;
+}
+
+/* Am Handy 2 Kacheln nebeneinander */
+.kachel-raster {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.kachel {
+  display: block;
+  aspect-ratio: 1 / 0.95;
+  padding: 0.9rem 1rem;
+  background-color: var(--farbe-flaeche);
+  color: var(--farbe-anthrazit);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.kachel:hover {
+  background-color: #E4DCCF;
+}
+
+.kachel:hover .kachel-titel {
+  color: var(--farbe-atelierrot);
+}
+
+/* Roter Button über die volle Breite ("Danke") */
+.knopf-breit {
+  display: block;
+  padding: 1.1rem 1rem;
+  background-color: var(--farbe-atelierrot);
+  color: var(--farbe-papier);
+  text-align: center;
+  font-size: 1.0625rem;
+}
+
+.knopf-breit:hover {
+  background-color: var(--farbe-atelierrot-dunkel);
+}
+
+/* Ab Tablet-Breite: 3 Kacheln nebeneinander */
+@media (min-width: 48rem) {
+  .kachel-raster {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Ab Laptop-Breite: Text links, Slideshow rechts (wie im Entwurf) */
+@media (min-width: 60rem) {
+  .startseite {
+    padding-top: 3rem;
+  }
+
+  .start-oben {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .slideshow {
+    order: 2;                    /* nach rechts */
+    margin-inline: 0;
+  }
+
+  /* Am Laptop Querformat, damit die Slideshow auf den Bildschirm passt.
+     Das Werk bleibt ganz sichtbar, links und rechts ist dann Beige. */
+  .dia img {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Pfeile mittig auf dem Bild (Höhe = 3/4 der Breite, Mitte also bei 3/8) */
+  .slideshow-pfeil {
+    top: 37.5cqw;
+  }
+
+  .dia-beschriftung {
+    padding-inline: 0;
+  }
+
+  .slideshow-steuerung,
+  .slideshow-nummern {
+    padding-inline: 0;
+  }
+
+  .slideshow-nummern {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .start-text {
+    order: 1;                    /* nach links */
+  }
+
+  .kacheln {
+    margin-top: 5rem;
+  }
 }
