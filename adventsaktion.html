@@ -48,8 +48,32 @@
 
   <main>
     <div class="container">
-      <h1>Adventsaktion</h1>
-      <p class="platzhalter">[PLATZHALTER: Hier kommen die 24 Kerzenhalter als Raster und eine kurze Erklärung der Aktion hin.]</p>
+
+      <!-- ===================== ERKLÄRUNG DER AKTION ===================== -->
+      <section class="aktion-intro">
+        <p class="ueberzeile">Adventsaktion Prutting 2026</p>
+        <h1>24 Kerzenhalter.<br>24 Unikate.</h1>
+        <p class="platzhalter">[PLATZHALTER: Kurze Erklärung der Aktion – tierische Figuren aus Keramik, jede ein Einzelstück und zugleich ein Kerzenhalter. Der Erlös geht zu 100 % an einen guten Zweck.]</p>
+
+        <h2>So funktioniert’s</h2>
+        <ol class="aktion-schritte">
+          <li><span class="platzhalter">[PLATZHALTER: Zettel ziehen – welcher Kerzenhalter es wird, entscheidet der Zufall.]</span></li>
+          <li><span class="platzhalter">[PLATZHALTER: Nummer auf dem Zettel merken.]</span></li>
+          <li><span class="platzhalter">[PLATZHALTER: Unten im Raster deine Nummer antippen und deinen Kerzenhalter groß ansehen.]</span></li>
+        </ol>
+      </section>
+      <!-- =================== ENDE ERKLÄRUNG =================== -->
+
+
+      <!-- ===================== RASTER DER 24 KERZENHALTER =====================
+           Wird von js/kerzenhalter-raster.js aus der Liste in
+           js/kerzenhalter-daten.js erzeugt. Klick öffnet die Lightbox. -->
+      <section aria-labelledby="raster-ueberschrift">
+        <h2 id="raster-ueberschrift">Alle 24 Kerzenhalter</h2>
+        <ul class="kerzenhalter-raster"></ul>
+      </section>
+      <!-- =================== ENDE RASTER =================== -->
+
     </div>
   </main>
 
@@ -83,5 +107,9 @@
   <!-- =================== ENDE FOOTER =================== -->
 
   <script src="js/navigation.js"></script>
+  <!-- Reihenfolge wichtig: erst Daten und Lightbox, dann das Raster, das beide benutzt -->
+  <script src="js/kerzenhalter-daten.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/kerzenhalter-raster.js"></script>
 </body>
 </html>
