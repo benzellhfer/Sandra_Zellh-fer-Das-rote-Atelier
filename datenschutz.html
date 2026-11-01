@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <!-- Sorgt dafür, dass die Seite am Handy in passender Breite angezeigt wird -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datenschutz – Das rote Atelier</title>
+  <meta name="description" content="Datenschutzerklärung von das-rote-atelier.de.">
+
+  <!-- Browser-Icons (Haus-Symbol) -->
+  <link rel="icon" href="bilder/logo/haus-symbol.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Hauptschrift vorab laden, damit der Text schneller richtig aussieht -->
+  <link rel="preload" href="schriften/manrope-variabel.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER (auf allen Seiten gleich) ===================== -->
+  <header class="seitenkopf">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <img src="bilder/logo/haus-symbol.svg" alt="" width="44" height="26">
+        Das rote Atelier
+      </a>
+
+      <!-- Hamburger-Knopf: nur am Handy sichtbar -->
+      <button class="menue-knopf" type="button" aria-expanded="false" aria-controls="hauptmenue" aria-label="Menü öffnen">
+        <span class="menue-knopf-striche"></span>
+      </button>
+
+      <nav class="hauptmenue" id="hauptmenue" aria-label="Hauptmenü">
+        <ul>
+          <li><a href="adventsaktion.html" class="hervorgehoben">Adventsaktion</a></li>
+          <li><a href="ueber-mich.html">Über mich</a></li>
+          <li><a href="keramik.html">Keramik</a></li>
+          <li><a href="skulpturen.html">Skulpturen</a></li>
+          <li><a href="malerei.html">Malerei</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- =================== ENDE HEADER =================== -->
+
+
+  <main>
+    <div class="container">
+      <h1>Datenschutzerklärung</h1>
+      <p class="platzhalter">[PLATZHALTER: Datenschutzerklärung (Texte folgen in einem späteren Schritt).]</p>
+    </div>
+  </main>
+
+
+  <!-- ===================== FOOTER (auf allen Seiten gleich) ===================== -->
+  <footer class="seitenfuss">
+    <div class="container">
+      <p class="seitenfuss-name">Das rote Atelier</p>
+      <nav aria-label="Rechtliches">
+        <ul>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html" aria-current="page">Datenschutz</a></li>
+        </ul>
+      </nav>
+      <p class="seitenfuss-copyright">© 2026 Das rote Atelier</p>
+    </div>
+  </footer>
+  <!-- =================== ENDE FOOTER =================== -->
+
+  <script src="js/navigation.js"></script>
+</body>
+</html>

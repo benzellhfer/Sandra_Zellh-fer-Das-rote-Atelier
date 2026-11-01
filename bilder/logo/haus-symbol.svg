@@ -1,0 +1,18 @@
+<!-- Haus-Symbol aus dem Logo, als Vektorgrafik nachgezeichnet (bleibt in jeder Größe scharf).
+     Die Linien sind etwas dicker als im Original, damit sie auch klein im Header gut sichtbar sind. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="480 225 1040 625" fill="none" stroke="#A62316" stroke-linecap="round">
+  <!-- Dach -->
+  <polyline points="533,500 1000,248 1433,500" stroke-width="24" stroke-linejoin="round"/>
+  <!-- Hauswand rechts -->
+  <line x1="1366" y1="462" x2="1366" y2="827" stroke-width="22"/>
+  <!-- Boden -->
+  <line x1="500" y1="833" x2="1500" y2="833" stroke-width="12"/>
+  <!-- Fenster -->
+  <rect x="1167" y="530" width="96" height="96" rx="4" fill="#A62316" stroke="none"/>
+  <!-- Linke Kerze mit Flamme -->
+  <rect x="772" y="690" width="22" height="143" fill="#A62316" stroke="none"/>
+  <path d="M783 586 C803 625 803 655 783 688 C763 655 763 625 783 586 Z" fill="#A62316" stroke="none"/>
+  <!-- Rechte Kerze mit Flammen-Umriss -->
+  <line x1="883" y1="640" x2="883" y2="833" stroke-width="12"/>
+  <path d="M883 566 C907 590 907 620 883 640 C859 620 859 590 883 566 Z" stroke-width="10"/>
+</svg>
