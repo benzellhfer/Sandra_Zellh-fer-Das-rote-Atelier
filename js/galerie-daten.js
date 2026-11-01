@@ -22,9 +22,16 @@
               (auf Groß-/Kleinschreibung achten!).
      titel  – optional: Titel des Werks, z. B. "Liegender Hund, 2024".
               Leer lassen ("") wenn es keinen Titel geben soll.
+              Der Titel erscheint in der Großansicht (Lightbox).
+     breite, hoehe – optional: Größe des Bildes in Pixeln (im Finder:
+              Bild auswählen, Cmd+I, "Weitere Informationen" → "Abmessungen").
+              Damit steht die Anordnung sofort richtig. Lässt du beides weg,
+              misst die Seite das Bild beim Laden selbst – dann kann die
+              Anordnung beim Laden kurz springen.
 
    Die Reihenfolge hier ist die Reihenfolge auf der Seite.
-   Neues Bild hinzufügen: eine Zeile { bild: …, titel: … }, kopieren, Pfad ändern.
+   Neues Bild hinzufügen: eine Zeile { bild: …, titel: …, breite: …, hoehe: … }
+   kopieren, Pfad und Maße ändern.
    Neue Werkreihe: einen ganzen { reihe: … } Block kopieren.
 
    Wichtig beim Bearbeiten:
@@ -40,31 +47,31 @@ const GALERIEN = {
       reihe: "Rauchbrand",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Rauchbrand]",
       bilder: [
-        { bild: "bilder/keramik/rauchbrand/schale-kupferoxyd.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/schale-schwarz-weiss.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/skulptur-ring.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/schale-eisenoxyd.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/schale-natur.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/zwei-schalen.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/teller.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/schale-kupferoxyd.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/rauchbrand/schale-schwarz-weiss.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/rauchbrand/skulptur-ring.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/rauchbrand/schale-eisenoxyd.jpg", titel: "", breite: 640, hoehe: 426 },
+        { bild: "bilder/keramik/rauchbrand/schale-natur.jpg", titel: "", breite: 640, hoehe: 426 },
+        { bild: "bilder/keramik/rauchbrand/zwei-schalen.jpg", titel: "", breite: 640, hoehe: 426 },
+        { bild: "bilder/keramik/rauchbrand/teller.jpg", titel: "", breite: 320, hoehe: 240 },
       ]
     },
     {
       reihe: "Gefäße",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Gefäße]",
       bilder: [
-        { bild: "bilder/keramik/gefaesse/schale-skulptural.jpg", titel: "" },
-        { bild: "bilder/keramik/gefaesse/schale-grau.jpg", titel: "" },
-        { bild: "bilder/keramik/gefaesse/vase-hoch.jpg", titel: "" },
-        { bild: "bilder/keramik/gefaesse/amphore-salzbrand.jpg", titel: "" },
+        { bild: "bilder/keramik/gefaesse/schale-skulptural.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/gefaesse/schale-grau.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/gefaesse/vase-hoch.jpg", titel: "", breite: 1349, hoehe: 1600 },
+        { bild: "bilder/keramik/gefaesse/amphore-salzbrand.jpg", titel: "", breite: 604, hoehe: 604 },
       ]
     },
     {
       reihe: "Dies und Das",
       text: "",
       bilder: [
-        { bild: "bilder/keramik/dies-und-das/boot.jpg", titel: "" },
-        { bild: "bilder/keramik/dies-und-das/herzen.jpg", titel: "" },
+        { bild: "bilder/keramik/dies-und-das/boot.jpg", titel: "", breite: 2048, hoehe: 1536 },
+        { bild: "bilder/keramik/dies-und-das/herzen.jpg", titel: "", breite: 640, hoehe: 426 },
       ]
     },
   ],
@@ -75,36 +82,36 @@ const GALERIEN = {
       reihe: "Figuren",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Figuren]",
       bilder: [
-        { bild: "bilder/skulpturen/figuren/schwester.jpg", titel: "" },
-        { bild: "bilder/skulpturen/figuren/bockige-nah.jpg", titel: "" },
-        { bild: "bilder/skulpturen/figuren/bockige.jpg", titel: "" },
-        { bild: "bilder/skulpturen/figuren/badewanne.jpg", titel: "" },
-        { bild: "bilder/skulpturen/figuren/zahnarzt.jpg", titel: "" },
-        { bild: "bilder/skulpturen/figuren/kamel.jpg", titel: "" },
-        { bild: "bilder/skulpturen/figuren/kamel-ganz.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/schwester.jpg", titel: "", breite: 1536, hoehe: 2048 },
+        { bild: "bilder/skulpturen/figuren/bockige-nah.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/figuren/bockige.jpg", titel: "", breite: 640, hoehe: 426 },
+        { bild: "bilder/skulpturen/figuren/badewanne.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/figuren/zahnarzt.jpg", titel: "", breite: 1369, hoehe: 1600 },
+        { bild: "bilder/skulpturen/figuren/kamel.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/figuren/kamel-ganz.jpg", titel: "", breite: 1600, hoehe: 1066 },
       ]
     },
     {
       reihe: "Hunde",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Hunde]",
       bilder: [
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-1.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/zwei-hunde.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-3.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-2.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-6.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hund-raku.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hund-rauchbrand-nah.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-1.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/hunde/zwei-hunde.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-3.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-2.jpg", titel: "", breite: 640, hoehe: 426 },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-6.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/hunde/hund-raku.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/hunde/hund-rauchbrand-nah.jpg", titel: "", breite: 1573, hoehe: 1600 },
       ]
     },
     {
       reihe: "Tierskulpturen",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Tierskulpturen]",
       bilder: [
-        { bild: "bilder/skulpturen/tierskulpturen/fuchs.jpg", titel: "" },
-        { bild: "bilder/skulpturen/tierskulpturen/stacheltier.jpg", titel: "" },
-        { bild: "bilder/skulpturen/tierskulpturen/esel-nah.jpg", titel: "" },
-        { bild: "bilder/skulpturen/tierskulpturen/esel.jpg", titel: "" },
+        { bild: "bilder/skulpturen/tierskulpturen/fuchs.jpg", titel: "", breite: 720, hoehe: 540 },
+        { bild: "bilder/skulpturen/tierskulpturen/stacheltier.jpg", titel: "", breite: 1600, hoehe: 1472 },
+        { bild: "bilder/skulpturen/tierskulpturen/esel-nah.jpg", titel: "", breite: 1549, hoehe: 1600 },
+        { bild: "bilder/skulpturen/tierskulpturen/esel.jpg", titel: "", breite: 604, hoehe: 603 },
       ]
     },
   ],
@@ -116,7 +123,7 @@ const GALERIEN = {
       reihe: "",
       text: "",
       bilder: [
-        { bild: "bilder/malerei/stier.jpg", titel: "" },
+        { bild: "bilder/malerei/stier.jpg", titel: "", breite: 960, hoehe: 720 },
       ]
     },
   ],

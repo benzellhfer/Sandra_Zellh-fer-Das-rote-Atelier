@@ -1068,16 +1068,39 @@ html.lightbox-offen {
   max-width: 42rem;
 }
 
-/* Raster: Bilder stehen zeilenweise in Reihenfolge (01 02 / 03 04)
-   und behalten ihr Format (hoch, quer, quadratisch). Am Handy 2 Spalten. */
+/* "Petersburger Hängung": Bilder hängen dicht an dicht in Reihen.
+   - Alle Bilder einer Reihe sind gleich hoch, jedes behält sein Format
+     (Querformat = breit, Hochformat = schmal), nichts wird abgeschnitten.
+   - Jede Reihe füllt die ganze Breite, dazwischen nur eine schmale Fuge.
+
+   So funktioniert's: js/galerie.js gibt jedem Bild sein Seitenverhältnis
+   als "--verhaeltnis" mit (z. B. 1.5 bei einem Querformat 3:2).
+   Daraus ergibt sich seine Grundbreite (Verhältnis × Reihenhöhe). Passen
+   die Bilder nicht genau in eine Reihe, wachsen alle im gleichen Verhältnis
+   mit, bis die Reihe voll ist – dadurch bleiben sie gleich hoch. */
 .galerie-raster {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: start;            /* jedes Bild in seiner echten Höhe, oben bündig */
-  gap: 1.5rem 1rem;
+  --reihenhoehe: 5.5rem;         /* Grundhöhe einer Reihe am Handy */
+  --fuge: 0.375rem;              /* Abstand zwischen den Bildern */
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fuge);
   list-style: none;
   margin: 1.5rem 0 0;
   padding: 0;
+}
+
+.galerie-raster li {
+  --verhaeltnis: 1;              /* Standard, falls (noch) unbekannt */
+  flex-grow: var(--verhaeltnis);
+  flex-basis: calc(var(--verhaeltnis) * var(--reihenhoehe));
+}
+
+/* Unsichtbarer Platzhalter am Ende: Die letzte, nicht ganz volle Reihe
+   wächst nur ein Stück mit (füllt die Lücke teilweise), statt einzelne
+   Bilder riesig aufzuziehen. Größere Zahl = mehr Lücke, kleinere = größere Bilder. */
+.galerie-raster::after {
+  content: "";
+  flex-grow: 2;
 }
 
 .galerie-knopf {
@@ -1086,14 +1109,14 @@ html.lightbox-offen {
   padding: 0;
   border: 0;
   background: none;
-  color: inherit;
-  font: inherit;
-  text-align: left;
   cursor: pointer;
 }
 
 .galerie-knopf img {
   width: 100%;
+  height: auto;
+  aspect-ratio: var(--verhaeltnis);
+  object-fit: cover;             /* gleicht nur winzige Rundungsfehler aus */
   background-color: var(--farbe-flaeche);
   transition: opacity 0.2s ease;
 }
@@ -1102,18 +1125,19 @@ html.lightbox-offen {
   opacity: 0.85;
 }
 
-.galerie-titel {
-  display: block;
-  margin-top: 0.4rem;
-  font-size: 0.875rem;
-  line-height: 1.4;
+/* Tablet: etwas höhere Reihen */
+@media (min-width: 48rem) {
+  .galerie-raster {
+    --reihenhoehe: 9rem;
+    --fuge: 0.5rem;
+  }
 }
 
-/* Ab Laptop-Breite: 3 Spalten, mehr Abstand */
+/* Laptop: noch höhere Reihen */
 @media (min-width: 60rem) {
   .galerie-raster {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem 2rem;
+    --reihenhoehe: 12rem;
+    --fuge: 0.625rem;
   }
 }
 

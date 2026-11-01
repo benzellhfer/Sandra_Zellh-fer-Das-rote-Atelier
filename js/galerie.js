@@ -87,13 +87,20 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
       bild.decoding = "async";
       knopf.appendChild(bild);
 
-      if (eintrag.titel) {
-        const titel = document.createElement("span");
-        titel.className = "galerie-titel";
-        titel.textContent = eintrag.titel;
-        markierePlatzhalter(titel, eintrag.titel);
-        knopf.appendChild(titel);
+      // Seitenverhältnis (Breite ÷ Höhe) an das CSS weitergeben:
+      // Daraus berechnet das CSS, wie breit das Bild in seiner Reihe wird
+      // ("Petersburger Hängung", siehe css/style.css Abschnitt 11).
+      if (eintrag.breite && eintrag.hoehe) {
+        listenpunkt.style.setProperty("--verhaeltnis", eintrag.breite / eintrag.hoehe);
+      } else {
+        // Keine Maße in der Datei: nach dem Laden selbst messen
+        bild.addEventListener("load", function () {
+          listenpunkt.style.setProperty("--verhaeltnis", bild.naturalWidth / bild.naturalHeight);
+        });
       }
+
+      // Werktitel stehen nicht unter dem Bild (damit die Bilder dicht
+      // an dicht hängen), sondern in der Großansicht (Lightbox)
 
       knopf.addEventListener("click", function () {
         oeffneLightbox(lightboxBilder, index, knopf);
