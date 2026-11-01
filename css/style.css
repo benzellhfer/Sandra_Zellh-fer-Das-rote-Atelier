@@ -101,17 +101,31 @@ body {
 h1,
 h2,
 h3 {
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2;
   margin: 0 0 0.75em;
 }
 
+/* Hauptüberschrift wie im Entwurf: dünn, rot, Großbuchstaben, etwas gesperrt */
 h1 {
-  font-size: clamp(1.75rem, 5vw, 2.5rem); /* wächst mit der Bildschirmbreite */
+  font-size: clamp(1.875rem, 6vw, 2.75rem); /* wächst mit der Bildschirmbreite */
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--farbe-atelierrot);
 }
 
 h2 {
   font-size: clamp(1.375rem, 3.5vw, 1.875rem);
+}
+
+/* Kleine Überzeile über Überschriften, z. B. "ADVENTSAKTION PRUTTING 2026" */
+.ueberzeile {
+  margin: 0 0 1rem;
+  font-family: var(--schrift-akzent);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
 }
 
 p {
@@ -173,23 +187,30 @@ img {
   align-items: center;
   justify-content: space-between;
   min-height: var(--header-hoehe);
+  padding-block: 0.75rem;
 }
 
-/* Logo links: Haus-Symbol + Name */
+/* Logo links (Bild mit Haus und Schriftzug).
+   Am Handy klein, damit die Slideshow ohne Scrollen sichtbar bleibt. */
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--farbe-anthrazit);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.125rem;
-  letter-spacing: 0.01em;
+  display: block;
+  flex-shrink: 0;
 }
 
 .logo img {
-  width: 2.75rem;
+  width: 6.5rem;
   height: auto;
+}
+
+/* Am Laptop: Logo größer, Header luftiger wie im Entwurf */
+@media (min-width: 60rem) {
+  .seitenkopf .container {
+    padding-block: 1.75rem;
+  }
+
+  .logo img {
+    width: 9.5rem;
+  }
 }
 
 /* Hamburger-Knopf (nur am Handy sichtbar) */
@@ -279,7 +300,7 @@ img {
   padding: 0.75rem 0;            /* große Tippfläche am Handy */
   color: var(--farbe-anthrazit);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.125rem;
 }
 
@@ -297,7 +318,7 @@ img {
 /* Hervorgehobener Menüpunkt (Adventsaktion) in Atelierrot */
 .hauptmenue a.hervorgehoben {
   color: var(--farbe-atelierrot);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Ab Laptop-Breite: Menü immer sichtbar, nebeneinander, kein Hamburger */
@@ -350,25 +371,43 @@ main {
    -------------------------------------------------------------------------- */
 .seitenfuss {
   border-top: 1px solid var(--farbe-linie);
-  padding-block: 2rem;
+  padding-block: 3rem 1.5rem;
   font-size: 0.9375rem;
 }
 
-.seitenfuss .container {
+/* Oberer Teil: Logo + Name links, Link-Spalten rechts */
+.seitenfuss-oben {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
+.seitenfuss-marke img {
+  width: 5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Großer roter Name wie im Entwurf */
 .seitenfuss-name {
   margin: 0;
-  font-weight: 600;
+  color: var(--farbe-atelierrot);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
 }
 
-.seitenfuss nav ul {
+/* Zwei Link-Spalten */
+.seitenfuss-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: 3rem;
+}
+
+.seitenfuss-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -376,10 +415,13 @@ main {
 
 .seitenfuss a {
   color: var(--farbe-anthrazit);
+  text-decoration: none;
 }
 
-.seitenfuss a:hover {
+.seitenfuss a:hover,
+.seitenfuss a[aria-current="page"] {
   color: var(--farbe-atelierrot);
+  text-decoration: underline;
 }
 
 .seitenfuss-copyright {
@@ -388,12 +430,16 @@ main {
   font-size: 0.8125rem;
 }
 
-/* Am Laptop: Footer-Inhalte nebeneinander */
+/* Ab Tablet-Breite: Logo links, Link-Spalten rechts */
 @media (min-width: 48rem) {
-  .seitenfuss .container {
+  .seitenfuss-oben {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
+  }
+
+  .seitenfuss-links {
+    gap: 5rem;
   }
 }
 

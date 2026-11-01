@@ -5,6 +5,8 @@ Website, die die Werke meiner Mutter zeigt: Keramik, Skulpturen und Malerei.
 Hauptanlass ist die **Adventsaktion**: 24 handgetöpferte Kerzenhalter in freier Form.
 
 So funktioniert die Aktion:
+- Die Kerzenhalter sind tierische Figuren aus Keramik, jede ein Einzelstück.
+- Der Erlös der Aktion geht zu 100 % an einen guten Zweck.
 - Die Kerzenhalter sind bereits verkauft. Käufer ziehen einen Zettel, welchen
   Kerzenhalter sie bekommen, ist also Zufall.
 - Die Aktion steht in einem Schaufenster. Dort hängt ein QR-Code, über den die
