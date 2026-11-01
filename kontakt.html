@@ -49,7 +49,50 @@
   <main>
     <div class="container">
       <h1>Kontakt</h1>
-      <p class="platzhalter">[PLATZHALTER: Kontaktmöglichkeit und Adresse des Ateliers.]</p>
+      <p class="einleitung platzhalter">[PLATZHALTER: Kurzer einladender Satz, z. B. „Sie haben Fragen zu einem Werk oder möchten das Atelier besuchen? Ich freue mich auf Ihre Nachricht.“]</p>
+
+      <!-- Zwei Blöcke: am Handy untereinander, am Laptop nebeneinander -->
+      <div class="kontakt-bloecke">
+
+        <section class="kontakt-block">
+          <h2>Schreib mir</h2>
+          <!-- E-Mail-Link: Beim Antippen öffnet sich das E-Mail-Programm.
+               Später an BEIDEN Stellen die echte Adresse eintragen:
+               hinter "mailto:" und im sichtbaren Text. -->
+          <p>
+            <span class="kontakt-label">E-Mail</span>
+            <a href="mailto:PLATZHALTER@das-rote-atelier.de"><span class="platzhalter">[PLATZHALTER: E-Mail-Adresse]</span></a>
+          </p>
+          <!-- Telefon (optional – ganzen <p>-Block löschen, wenn nicht gewünscht).
+               "tel:" macht die Nummer am Handy antippbar; dort ohne Leerzeichen
+               und mit +49 statt der ersten 0 eintragen, z. B. tel:+4980361234 -->
+          <p>
+            <span class="kontakt-label">Telefon</span>
+            <a href="tel:+490000000000"><span class="platzhalter">[PLATZHALTER: Telefonnummer, optional]</span></a>
+          </p>
+        </section>
+
+        <section class="kontakt-block">
+          <h2>Das Atelier</h2>
+          <!-- <address> ist das passende HTML-Element für Kontaktangaben -->
+          <address>
+            <span class="kontakt-label">Adresse</span>
+            Das rote Atelier<br>
+            <span class="platzhalter">[PLATZHALTER: Straße und Hausnummer]</span><br>
+            <span class="platzhalter">[PLATZHALTER: PLZ]</span> Prutting
+          </address>
+          <p>
+            <span class="kontakt-label">Besuch</span>
+            <span class="platzhalter">[PLATZHALTER: z. B. „nach Vereinbarung“ oder feste Öffnungszeiten]</span>
+          </p>
+          <!-- Einfacher Link zu Google Maps (keine eingebettete Karte, daher
+               werden beim Laden der Seite keine Daten an Google gesendet).
+               Später hinter "query=" die vollständige Adresse eintragen,
+               Leerzeichen als "+", z. B. query=Musterstraße+1+83134+Prutting -->
+          <p><a class="pfeil-link" href="https://www.google.com/maps/search/?api=1&amp;query=Prutting" target="_blank" rel="noopener">Route in Google Maps öffnen</a></p>
+        </section>
+
+      </div>
     </div>
   </main>
 

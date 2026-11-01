@@ -13,6 +13,7 @@
    9. Adventsaktion-Seite: Erklärung und Raster
    10. Lightbox (Großansicht, auch für die Galerien)
    11. Galerien: Keramik, Skulpturen, Malerei
+   12. Über mich und Kontakt
 
    "Mobile First": Die normalen Regeln gelten fürs Handy.
    Regeln in "@media (min-width: …)" gelten zusätzlich für größere Bildschirme.
@@ -1090,5 +1091,85 @@ html.lightbox-offen {
   .galerie-raster {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem 2rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Über mich und Kontakt
+   -------------------------------------------------------------------------- */
+
+/* Etwas größerer Einleitungstext */
+.einleitung {
+  max-width: 42rem;
+  font-size: 1.1875rem;
+  line-height: 1.55;
+}
+
+/* ---- Über mich ---- */
+.ueber-mich {
+  display: grid;
+  gap: 2rem;
+}
+
+.ueber-mich-foto {
+  margin: 0;
+  max-width: 26rem;              /* am Handy nicht riesig */
+}
+
+.ueber-mich-foto img {
+  width: 100%;
+  background-color: var(--farbe-flaeche);
+}
+
+.ueber-mich-text {
+  max-width: 42rem;
+}
+
+.ueber-mich-text h2 {
+  margin-top: 2rem;
+}
+
+/* Am Laptop: Foto links, Text rechts */
+@media (min-width: 60rem) {
+  .ueber-mich {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* ---- Kontakt ---- */
+.kontakt-bloecke {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.kontakt-block h2 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--farbe-linie);
+}
+
+.kontakt-block address {
+  font-style: normal;            /* <address> wäre sonst kursiv */
+  margin-bottom: 1em;
+}
+
+/* Kleine Beschriftung über jeder Angabe ("E-MAIL", "ADRESSE" …) */
+.kontakt-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: var(--schrift-akzent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Ab Tablet-Breite: beide Blöcke nebeneinander */
+@media (min-width: 48rem) {
+  .kontakt-bloecke {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
   }
 }
