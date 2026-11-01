@@ -7,6 +7,7 @@
    Aufbau einer Werkreihe:
      {
        reihe: "Name der Werkreihe",        ← wird als Überschrift angezeigt
+                                             (leer lassen "" = keine Überschrift)
        text: "",                           ← optional: kurzer Text unter der Überschrift
        bilder: [
          { bild: "bilder/…/datei.jpg", titel: "" },
@@ -15,12 +16,14 @@
      },
 
    Pro Bild:
-     bild   – Pfad zum Foto. Ablegen kannst du es in einem beliebigen Ordner
-              unter bilder/, der Pfad muss nur genau stimmen
+     bild   – Pfad zum Foto. Die Bilder liegen in bilder/keramik/,
+              bilder/skulpturen/ und bilder/malerei/, jeweils mit einem
+              Unterordner pro Werkreihe. Der Pfad muss genau stimmen
               (auf Groß-/Kleinschreibung achten!).
      titel  – optional: Titel des Werks, z. B. "Liegender Hund, 2024".
               Leer lassen ("") wenn es keinen Titel geben soll.
 
+   Die Reihenfolge hier ist die Reihenfolge auf der Seite.
    Neues Bild hinzufügen: eine Zeile { bild: …, titel: … }, kopieren, Pfad ändern.
    Neue Werkreihe: einen ganzen { reihe: … } Block kopieren.
 
@@ -37,10 +40,31 @@ const GALERIEN = {
       reihe: "Rauchbrand",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Rauchbrand]",
       bilder: [
-        { bild: "bilder/keramik/rauchbrand/rauchbrand-01.jpg", titel: "[PLATZHALTER: Titel des Werks]" },
-        { bild: "bilder/keramik/rauchbrand/rauchbrand-02.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/rauchbrand-03.jpg", titel: "" },
-        { bild: "bilder/keramik/rauchbrand/rauchbrand-04.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/schale-kupferoxyd.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/schale-schwarz-weiss.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/skulptur-ring.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/schale-eisenoxyd.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/schale-natur.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/zwei-schalen.jpg", titel: "" },
+        { bild: "bilder/keramik/rauchbrand/teller.jpg", titel: "" },
+      ]
+    },
+    {
+      reihe: "Gefäße",
+      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Gefäße]",
+      bilder: [
+        { bild: "bilder/keramik/gefaesse/schale-skulptural.jpg", titel: "" },
+        { bild: "bilder/keramik/gefaesse/schale-grau.jpg", titel: "" },
+        { bild: "bilder/keramik/gefaesse/vase-hoch.jpg", titel: "" },
+        { bild: "bilder/keramik/gefaesse/amphore-salzbrand.jpg", titel: "" },
+      ]
+    },
+    {
+      reihe: "Dies und Das",
+      text: "",
+      bilder: [
+        { bild: "bilder/keramik/dies-und-das/boot.jpg", titel: "" },
+        { bild: "bilder/keramik/dies-und-das/herzen.jpg", titel: "" },
       ]
     },
   ],
@@ -48,47 +72,51 @@ const GALERIEN = {
   // ------------------------------------------------------------- SKULPTUREN
   skulpturen: [
     {
-      reihe: "Tierskulptur",
-      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Tierskulptur]",
+      reihe: "Figuren",
+      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Figuren]",
       bilder: [
-        { bild: "bilder/skulpturen/tierskulptur/tierskulptur-01.jpg", titel: "" },
-        { bild: "bilder/skulpturen/tierskulptur/tierskulptur-02.jpg", titel: "" },
-        { bild: "bilder/skulpturen/tierskulptur/tierskulptur-03.jpg", titel: "" },
-        { bild: "bilder/skulpturen/tierskulptur/tierskulptur-04.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/schwester.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/bockige-nah.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/bockige.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/badewanne.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/zahnarzt.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/kamel.jpg", titel: "" },
+        { bild: "bilder/skulpturen/figuren/kamel-ganz.jpg", titel: "" },
       ]
     },
     {
       reihe: "Hunde",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Hunde]",
       bilder: [
-        { bild: "bilder/skulpturen/hunde/hunde-01.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hunde-02.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hunde-03.jpg", titel: "" },
-        { bild: "bilder/skulpturen/hunde/hunde-04.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-1.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/zwei-hunde.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-3.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-2.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-skulptural-6.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-raku.jpg", titel: "" },
+        { bild: "bilder/skulpturen/hunde/hund-rauchbrand-nah.jpg", titel: "" },
+      ]
+    },
+    {
+      reihe: "Tierskulpturen",
+      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Tierskulpturen]",
+      bilder: [
+        { bild: "bilder/skulpturen/tierskulpturen/fuchs.jpg", titel: "" },
+        { bild: "bilder/skulpturen/tierskulpturen/stacheltier.jpg", titel: "" },
+        { bild: "bilder/skulpturen/tierskulpturen/esel-nah.jpg", titel: "" },
+        { bild: "bilder/skulpturen/tierskulpturen/esel.jpg", titel: "" },
       ]
     },
   ],
 
   // ---------------------------------------------------------------- MALEREI
+  // Vorerst ohne Werkreihen: reihe ist leer, daher keine Zwischenüberschrift
   malerei: [
     {
-      reihe: "Schichten in Acryl",
-      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Schichten in Acryl]",
+      reihe: "",
+      text: "",
       bilder: [
-        { bild: "bilder/malerei/schichten-in-acryl/schichten-in-acryl-01.jpg", titel: "" },
-        { bild: "bilder/malerei/schichten-in-acryl/schichten-in-acryl-02.jpg", titel: "" },
-        { bild: "bilder/malerei/schichten-in-acryl/schichten-in-acryl-03.jpg", titel: "" },
-        { bild: "bilder/malerei/schichten-in-acryl/schichten-in-acryl-04.jpg", titel: "" },
-      ]
-    },
-    {
-      reihe: "Zwiesprache",
-      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Zwiesprache]",
-      bilder: [
-        { bild: "bilder/malerei/zwiesprache/zwiesprache-01.jpg", titel: "" },
-        { bild: "bilder/malerei/zwiesprache/zwiesprache-02.jpg", titel: "" },
-        { bild: "bilder/malerei/zwiesprache/zwiesprache-03.jpg", titel: "" },
-        { bild: "bilder/malerei/zwiesprache/zwiesprache-04.jpg", titel: "" },
+        { bild: "bilder/malerei/stier.jpg", titel: "" },
       ]
     },
   ],

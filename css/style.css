@@ -671,17 +671,39 @@ main {
 }
 
 .kachel {
+  position: relative;            /* damit Bild und Titel sich daran ausrichten */
   display: block;
   aspect-ratio: 1 / 0.95;
-  padding: 0.9rem 1rem;
+  overflow: hidden;
   background-color: var(--farbe-flaeche);
   color: var(--farbe-anthrazit);
   text-decoration: none;
-  transition: background-color 0.2s ease;
 }
 
-.kachel:hover {
-  background-color: #E4DCCF;
+/* Das Foto füllt die ganze Kachel (Ränder werden ggf. abgeschnitten) */
+.kachel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Titel oben links auf hellem Schild, damit er auf jedem Foto lesbar ist */
+.kachel-titel {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  padding: 0.2rem 0.6rem;
+  background-color: var(--farbe-papier);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+/* Beim Darüberfahren: Foto zoomt leicht, Titel wird rot */
+.kachel:hover img {
+  transform: scale(1.04);
 }
 
 .kachel:hover .kachel-titel {

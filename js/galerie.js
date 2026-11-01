@@ -35,11 +35,18 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
   werkreihen.forEach(function (werkreihe) {
     const abschnitt = document.createElement("section");
     abschnitt.className = "werkreihe";
-    abschnitt.id = ankerAusName(werkreihe.reihe);
 
-    const ueberschrift = document.createElement("h2");
-    ueberschrift.textContent = werkreihe.reihe;
-    abschnitt.appendChild(ueberschrift);
+    // Name für Beschriftungen: der Werkreihen-Name, oder – wenn leer –
+    // die Hauptüberschrift der Seite (z. B. "Malerei")
+    const anzeigeName = werkreihe.reihe || document.querySelector("h1").textContent;
+
+    // Überschrift und Anker nur, wenn die Werkreihe einen Namen hat
+    if (werkreihe.reihe) {
+      abschnitt.id = ankerAusName(werkreihe.reihe);
+      const ueberschrift = document.createElement("h2");
+      ueberschrift.textContent = werkreihe.reihe;
+      abschnitt.appendChild(ueberschrift);
+    }
 
     if (werkreihe.text) {
       const text = document.createElement("p");
@@ -55,9 +62,9 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
     const lightboxBilder = werkreihe.bilder.map(function (eintrag) {
       return {
         bild: eintrag.bild,
-        alt: eintrag.titel || werkreihe.reihe,
+        alt: eintrag.titel || anzeigeName,
         titel: "",
-        text: eintrag.titel ? eintrag.titel + " · " + werkreihe.reihe : werkreihe.reihe
+        text: eintrag.titel ? eintrag.titel + " · " + anzeigeName : anzeigeName
       };
     });
 
@@ -71,7 +78,7 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
       knopf.type = "button";
       knopf.className = "galerie-knopf";
       knopf.setAttribute("aria-label",
-        (eintrag.titel || werkreihe.reihe + ", Bild " + (index + 1)) + " – groß anzeigen");
+        (eintrag.titel || anzeigeName + ", Bild " + (index + 1)) + " – groß anzeigen");
 
       const bild = document.createElement("img");
       bild.src = eintrag.bild;
