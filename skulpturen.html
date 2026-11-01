@@ -49,7 +49,11 @@
   <main>
     <div class="container">
       <h1>Skulpturen</h1>
-      <p class="platzhalter">[PLATZHALTER: Galerie mit Skulpturen.]</p>
+      <p class="galerie-intro platzhalter">[PLATZHALTER: Einleitender Satz zu den Skulpturen]</p>
+
+      <!-- Galerie: Werkreihen und Bilder kommen aus js/galerie-daten.js
+           (Abschnitt "skulpturen"), gebaut von js/galerie.js -->
+      <div class="galerie" data-galerie="skulpturen"></div>
     </div>
   </main>
 
@@ -83,5 +87,9 @@
   <!-- =================== ENDE FOOTER =================== -->
 
   <script src="js/navigation.js"></script>
+  <!-- Reihenfolge wichtig: erst Daten und Lightbox, dann die Galerie, die beide benutzt -->
+  <script src="js/galerie-daten.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/galerie.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@
    8. Startseite: Slideshow, Text, Kacheln
    9. Adventsaktion-Seite: Erklärung und Raster
    10. Lightbox (Großansicht, auch für die Galerien)
+   11. Galerien: Keramik, Skulpturen, Malerei
 
    "Mobile First": Die normalen Regeln gelten fürs Handy.
    Regeln in "@media (min-width: …)" gelten zusätzlich für größere Bildschirme.
@@ -1019,5 +1020,75 @@ html.lightbox-offen {
 
   .lightbox-inhalt {
     padding-inline: 6rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Galerien (Keramik, Skulpturen, Malerei)
+   Die Inhalte werden von js/galerie.js aus js/galerie-daten.js erzeugt.
+   -------------------------------------------------------------------------- */
+
+.galerie-intro {
+  max-width: 42rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Eine Werkreihe mit Überschrift und Bildern */
+.werkreihe {
+  margin-bottom: 4rem;
+  scroll-margin-top: 1.5rem;     /* beim Springen per Anker etwas Luft oben */
+}
+
+.werkreihe-text {
+  max-width: 42rem;
+}
+
+/* Raster: Bilder stehen zeilenweise in Reihenfolge (01 02 / 03 04)
+   und behalten ihr Format (hoch, quer, quadratisch). Am Handy 2 Spalten. */
+.galerie-raster {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;            /* jedes Bild in seiner echten Höhe, oben bündig */
+  gap: 1.5rem 1rem;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.galerie-knopf {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.galerie-knopf img {
+  width: 100%;
+  background-color: var(--farbe-flaeche);
+  transition: opacity 0.2s ease;
+}
+
+.galerie-knopf:hover img {
+  opacity: 0.85;
+}
+
+.galerie-titel {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Ab Laptop-Breite: 3 Spalten, mehr Abstand */
+@media (min-width: 60rem) {
+  .galerie-raster {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 2rem;
   }
 }
