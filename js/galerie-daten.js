@@ -83,12 +83,12 @@ const GALERIEN = {
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Figuren]",
       bilder: [
         { bild: "bilder/skulpturen/figuren/schwester.jpg", titel: "", breite: 1536, hoehe: 2048 },
-        { bild: "bilder/skulpturen/figuren/bockige-nah.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/figuren/bockige-nah.jpg", titel: "", breite: 1066, hoehe: 1600 },
         { bild: "bilder/skulpturen/figuren/bockige.jpg", titel: "", breite: 640, hoehe: 426 },
         { bild: "bilder/skulpturen/figuren/badewanne.jpg", titel: "", breite: 1600, hoehe: 1066 },
         { bild: "bilder/skulpturen/figuren/zahnarzt.jpg", titel: "", breite: 1369, hoehe: 1600 },
         { bild: "bilder/skulpturen/figuren/kamel.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/figuren/kamel-ganz.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/figuren/kamel-ganz.jpg", titel: "", breite: 1066, hoehe: 1600 },
       ]
     },
     {
@@ -100,7 +100,7 @@ const GALERIEN = {
         { bild: "bilder/skulpturen/hunde/hund-skulptural-3.jpg", titel: "", breite: 1600, hoehe: 1066 },
         { bild: "bilder/skulpturen/hunde/hund-skulptural-2.jpg", titel: "", breite: 640, hoehe: 426 },
         { bild: "bilder/skulpturen/hunde/hund-skulptural-6.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/hunde/hund-raku.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/skulpturen/hunde/hund-raku.jpg", titel: "", breite: 1066, hoehe: 1600 },
         { bild: "bilder/skulpturen/hunde/hund-rauchbrand-nah.jpg", titel: "", breite: 1573, hoehe: 1600 },
       ]
     },

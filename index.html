@@ -105,25 +105,28 @@
          (z. B. keramik.html#rauchbrand).
          Bilder kommen später dazu (Kachel bekommt dann ein <img>). -->
     <section class="kacheln container" aria-label="Werke">
-      <!-- Bild einer Kachel tauschen: einfach den Pfad bei src="…" ändern.
+      <!-- Bild einer Kachel tauschen: den Pfad bei src="…" ändern UND bei
+           --verhaeltnis das Seitenverhältnis des neuen Bildes eintragen
+           (Breite ÷ Höhe, z. B. 1600 ÷ 1066 = 1.5; Hochformat < 1, Querformat > 1).
+           Daraus berechnet das CSS die dichte Anordnung (Petersburger Hängung).
            loading="lazy": Bild lädt erst, wenn man hinscrollt (spart mobile Daten) -->
       <ul class="kachel-raster">
-        <li><a class="kachel" href="skulpturen.html#tierskulpturen">
+        <li style="--verhaeltnis: 1.333"><a class="kachel" href="skulpturen.html#tierskulpturen">
           <img src="bilder/skulpturen/tierskulpturen/fuchs.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Tierskulpturen</span></a></li>
-        <li><a class="kachel" href="keramik.html#rauchbrand">
+        <li style="--verhaeltnis: 1.5"><a class="kachel" href="keramik.html#rauchbrand">
           <img src="bilder/keramik/rauchbrand/schale-kupferoxyd.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Rauchbrand</span></a></li>
         <!-- Adventsaktion: Bild folgt, sobald die Fotos der Kerzenhalter da sind -->
-        <li><a class="kachel" href="adventsaktion.html">
+        <li style="--verhaeltnis: 1.333"><a class="kachel" href="adventsaktion.html">
           <span class="kachel-titel">Adventsaktion</span></a></li>
-        <li><a class="kachel" href="skulpturen.html#hunde">
+        <li style="--verhaeltnis: 1.5"><a class="kachel" href="skulpturen.html#hunde">
           <img src="bilder/skulpturen/hunde/hund-skulptural-1.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Hunde</span></a></li>
-        <li><a class="kachel" href="skulpturen.html#figuren">
+        <li style="--verhaeltnis: 0.667"><a class="kachel" href="skulpturen.html#figuren">
           <img src="bilder/skulpturen/figuren/bockige-nah.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Figuren</span></a></li>
-        <li><a class="kachel" href="malerei.html">
+        <li style="--verhaeltnis: 1.333"><a class="kachel" href="malerei.html">
           <img src="bilder/malerei/stier.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Malerei</span></a></li>
       </ul>
