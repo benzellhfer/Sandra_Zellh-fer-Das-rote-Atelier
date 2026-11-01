@@ -729,19 +729,24 @@ main {
   transition: opacity 0.3s ease;
 }
 
-/* Titel mittig auf der Kachel, auf hellem Schild */
+/* Titel mittig auf der Kachel, als freistehender Text.
+   Der weiche helle Schimmer (text-shadow) sorgt dafür, dass die Schrift
+   auch auf unruhigen oder dunklen Fotos lesbar bleibt. */
 .kachel-titel {
   position: absolute;
   z-index: 1;                    /* liegt über dem Schleier */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);  /* genau in die Mitte rücken */
-  padding: 0.1rem 0.45rem;
-  background-color: var(--farbe-papier);
-  font-size: 0.8125rem;          /* am Handy etwas kleiner, die Kacheln sind kleiner */
-  line-height: 1.4;
+  width: max-content;
+  max-width: calc(100% - 1rem);  /* nie breiter als die Kachel, langer Titel bricht um */
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
   text-align: center;
-  max-width: calc(100% - 0.8rem); /* nie breiter als die Kachel, langer Titel bricht um */
+  text-shadow:
+    0 0 0.5rem rgba(251, 250, 243, 0.95),
+    0 0 1.25rem rgba(251, 250, 243, 0.8);
 }
 
 /* Kachel "Danke": Fläche in Atelierrot, ohne Schleier */
@@ -751,6 +756,12 @@ main {
 
 .kachel-danke .kachel::after {
   display: none;
+}
+
+/* Auf Rot: helle Schrift ohne Schimmer */
+.kachel-danke .kachel-titel {
+  color: var(--farbe-papier);
+  text-shadow: none;
 }
 
 /* Beim Darüberfahren (nur bei Links): Schleier weg, Foto zoomt leicht, Titel wird rot */
@@ -782,8 +793,7 @@ a.kachel:hover .kachel-titel {
   }
 
   .kachel-titel {
-    padding: 0.2rem 0.6rem;
-    font-size: 0.9375rem;
+    font-size: 1.375rem;
   }
 }
 
