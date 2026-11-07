@@ -22,10 +22,6 @@
   <!-- ===================== HEADER (auf allen Seiten gleich) ===================== -->
   <header class="seitenkopf">
     <div class="container">
-      <a class="logo" href="index.html">
-        <img src="bilder/logo/logo-header.png" alt="Das rote Atelier – Keramik, Skulptur, Malerei" width="480" height="330">
-      </a>
-
       <!-- Hamburger-Knopf: nur am Handy sichtbar -->
       <button class="menue-knopf" type="button" aria-expanded="false" aria-controls="hauptmenue" aria-label="Menü öffnen">
         <span class="menue-knopf-striche"></span>
@@ -41,6 +37,26 @@
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
+
+      <!-- Logo in der Mitte -->
+      <a class="logo" href="index.html">
+        <img src="bilder/logo/logo-header.png" alt="Das rote Atelier – Keramik, Skulptur, Malerei" width="480" height="330">
+      </a>
+
+      <!-- Rechts: Instagram und E-Mail als Symbole.
+           Instagram-Adresse: bei href="…" eintragen, sobald sie feststeht. -->
+      <ul class="kopf-symbole">
+        <li>
+          <a href="PLATZHALTER-INSTAGRAM-LINK" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:PLATZHALTER@das-rote-atelier.de" aria-label="E-Mail schreiben">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg>
+          </a>
+        </li>
+      </ul>
     </div>
   </header>
   <!-- =================== ENDE HEADER =================== -->

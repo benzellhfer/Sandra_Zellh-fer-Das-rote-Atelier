@@ -190,19 +190,23 @@ img {
   border-bottom: 1px solid var(--farbe-linie);
 }
 
+/* Drei Spalten: links Menü (am Handy: Hamburger), Mitte Logo, rechts Symbole.
+   Die beiden äußeren Spalten sind gleich breit, so steht das Logo genau mittig. */
 .seitenkopf .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
+  column-gap: 1rem;
   min-height: var(--header-hoehe);
   padding-block: 0.75rem;
 }
 
-/* Logo links (Bild mit Haus und Schriftzug).
+/* Logo in der Mitte (Bild mit Haus und Schriftzug).
    Am Handy klein, damit die Slideshow ohne Scrollen sichtbar bleibt. */
 .logo {
   display: block;
-  flex-shrink: 0;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .logo img {
@@ -210,9 +214,45 @@ img {
   height: auto;
 }
 
-/* Am Laptop: Logo größer, Header luftiger wie im Entwurf */
+/* Rechts: Instagram- und E-Mail-Symbol in Atelierrot */
+.kopf-symbole {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;             /* ganz nach rechts schieben */
+  display: flex;
+  list-style: none;
+  margin: 0 -0.625rem 0 0;       /* bündig mit dem rechten Rand */
+  padding: 0;
+}
+
+.kopf-symbole a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;                /* groß genug zum Antippen mit dem Finger */
+  height: 2.75rem;
+  color: var(--farbe-atelierrot);
+}
+
+.kopf-symbole a:hover {
+  color: var(--farbe-atelierrot-dunkel);
+}
+
+.kopf-symbole svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;          /* Linienfarbe = Textfarbe des Links */
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Am Laptop: Logo größer, Header luftiger und breiter wie im Vorbild */
 @media (min-width: 60rem) {
   .seitenkopf .container {
+    max-width: 90rem;
+    column-gap: 2rem;
     padding-block: 1.75rem;
   }
 
@@ -226,9 +266,11 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-column: 1;                /* linke Spalte */
+  grid-row: 1;
   width: 3rem;                   /* groß genug zum Antippen mit dem Finger */
   height: 3rem;
-  margin-right: -0.75rem;        /* bündig mit dem rechten Rand */
+  margin-left: -0.75rem;         /* bündig mit dem linken Rand */
   padding: 0;
   border: 0;
   background: none;
@@ -335,9 +377,12 @@ img {
     display: none;
   }
 
+  /* Menü steht in der linken Spalte */
   .hauptmenue,
   .hauptmenue.ist-offen {
     display: block;
+    grid-column: 1;
+    grid-row: 1;
     position: static;
     border: 0;
     box-shadow: none;
@@ -346,13 +391,14 @@ img {
 
   .hauptmenue ul {
     display: flex;
-    gap: 1.75rem;
+    gap: 1.5rem;
     padding: 0;
   }
 
   .hauptmenue a {
     padding: 0.5rem 0;
     font-size: 1rem;
+    white-space: nowrap;         /* "Über mich" nicht umbrechen */
   }
 
   .hauptmenue li + li a {
