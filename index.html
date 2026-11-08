@@ -119,7 +119,7 @@
     <!-- ===================== KACHELN =====================
          7 Kacheln als Petersburger Hängung nach der Skizze:
            oben:  Tierskulpturen (groß) | Rauchbrand | Adventsaktion
-           unten: Hunde | Malerei (groß) | Zwiegespräch + Danke (übereinander)
+           unten: Tiere | Malerei (groß) | Zwiegespräch + Danke (übereinander)
          Die Anordnung steht im CSS (Abschnitt 8, "grid-template-areas").
          Jede Kachel hat dafür eine Klasse wie "kachel-tier".
          Bild tauschen: einfach den Pfad bei src="…" ändern. Das Foto wird
@@ -127,24 +127,24 @@
          loading="lazy": Bild lädt erst, wenn man hinscrollt (spart mobile Daten) -->
     <section class="kacheln container" aria-label="Werke">
       <ul class="kachel-raster">
-        <li class="kachel-tier"><a class="kachel" href="skulpturen.html#tierskulpturen">
-          <img src="bilder/skulpturen/tierskulpturen/fuchs.jpg" alt="" loading="lazy">
+        <li class="kachel-tier"><a class="kachel" href="skulpturen.html#tiere">
+          <img src="bilder/skulpturen/tiere/fuchs.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Tierskulpturen</span></a></li>
         <li class="kachel-rauchbrand"><a class="kachel" href="keramik.html#rauchbrand">
-          <img src="bilder/keramik/rauchbrand/schale-kupferoxyd.jpg" alt="" loading="lazy">
+          <img src="bilder/keramik/rauchbrand/schale-1.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Rauchbrand</span></a></li>
         <!-- Adventsaktion: Bild folgt, sobald die Fotos der Kerzenhalter da sind -->
         <li class="kachel-advent"><a class="kachel" href="adventsaktion.html">
           <span class="kachel-titel">Adventsaktion</span></a></li>
-        <li class="kachel-hunde"><a class="kachel" href="skulpturen.html#hunde">
-          <img src="bilder/skulpturen/hunde/hund-skulptural-3.jpg" alt="" loading="lazy">
-          <span class="kachel-titel">Hunde</span></a></li>
+        <li class="kachel-hunde"><a class="kachel" href="skulpturen.html#tiere">
+          <img src="bilder/skulpturen/tiere/hund-1.jpg" alt="" loading="lazy">
+          <span class="kachel-titel">Tiere</span></a></li>
         <li class="kachel-malerei"><a class="kachel" href="malerei.html">
-          <img src="bilder/malerei/stier.jpg" alt="" loading="lazy">
+          <img src="bilder/malerei/roter-stier.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Malerei</span></a></li>
-        <!-- Zwiegespräch: Titel aus der Skizze, Bild und Link vorläufig (Figuren) -->
-        <li class="kachel-zwie"><a class="kachel" href="skulpturen.html#figuren">
-          <img src="bilder/skulpturen/figuren/bockige.jpg" alt="" loading="lazy">
+        <!-- Zwiegespräch: führt zur Werkreihe „Zwiegespräche“ auf der Skulpturen-Seite -->
+        <li class="kachel-zwie"><a class="kachel" href="skulpturen.html#zwiegespraeche">
+          <img src="bilder/skulpturen/zwiegespraeche/maedchen-ziege.jpg" alt="" loading="lazy">
           <span class="kachel-titel">Zwiegespräch</span></a></li>
         <!-- Danke: rote Fläche (Farbe im CSS). Mit Ziel: <div class="kachel"> durch
              <a class="kachel" href="ZIEL.html"> ersetzen (und </div> durch </a>) -->

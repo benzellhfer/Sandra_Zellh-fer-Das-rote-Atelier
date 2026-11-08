@@ -47,83 +47,150 @@ const GALERIEN = {
       reihe: "Rauchbrand",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Rauchbrand]",
       bilder: [
-        { bild: "bilder/keramik/rauchbrand/schale-kupferoxyd.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/keramik/rauchbrand/schale-schwarz-weiss.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/keramik/rauchbrand/skulptur-ring.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/keramik/rauchbrand/schale-eisenoxyd.jpg", titel: "", breite: 640, hoehe: 426 },
-        { bild: "bilder/keramik/rauchbrand/schale-natur.jpg", titel: "", breite: 640, hoehe: 426 },
-        { bild: "bilder/keramik/rauchbrand/zwei-schalen.jpg", titel: "", breite: 640, hoehe: 426 },
-        { bild: "bilder/keramik/rauchbrand/teller.jpg", titel: "", breite: 320, hoehe: 240 },
+        { bild: "bilder/keramik/rauchbrand/ring.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/rauchbrand/schale-1.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/rauchbrand/schale-2.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/keramik/rauchbrand/schale-3.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/rauchbrand/schale-4.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/keramik/rauchbrand/schale-detail-1.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/keramik/rauchbrand/schale-detail-2.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/keramik/rauchbrand/schale-flach.jpg", titel: "", breite: 1536, hoehe: 1024 },
       ]
     },
     {
       reihe: "Gefäße",
       text: "[PLATZHALTER: Kurzer Text zur Werkreihe Gefäße]",
       bilder: [
-        { bild: "bilder/keramik/gefaesse/schale-skulptural.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/keramik/gefaesse/schale-grau.jpg", titel: "", breite: 1600, hoehe: 1066 },
+        { bild: "bilder/keramik/gefaesse/dose-schwarz.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/keramik/gefaesse/schale-fuesse.jpg", titel: "", breite: 1086, hoehe: 724 },
+        { bild: "bilder/keramik/gefaesse/schale-gepunktet.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/keramik/gefaesse/schale-gesprenkelt.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/keramik/gefaesse/schale-gestreift.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/keramik/gefaesse/vase-feld.jpg", titel: "", breite: 604, hoehe: 604 },
         { bild: "bilder/keramik/gefaesse/vase-hoch.jpg", titel: "", breite: 1349, hoehe: 1600 },
-        { bild: "bilder/keramik/gefaesse/amphore-salzbrand.jpg", titel: "", breite: 604, hoehe: 604 },
       ]
     },
     {
       reihe: "Dies und Das",
       text: "",
       bilder: [
-        { bild: "bilder/keramik/dies-und-das/boot.jpg", titel: "", breite: 2048, hoehe: 1536 },
-        { bild: "bilder/keramik/dies-und-das/herzen.jpg", titel: "", breite: 640, hoehe: 426 },
+        { bild: "bilder/keramik/dies-und-das/boot-1.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/keramik/dies-und-das/boot-2.jpg", titel: "", breite: 2048, hoehe: 1536 },
+        { bild: "bilder/keramik/dies-und-das/herzen-anhaenger-1.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/keramik/dies-und-das/herzen-anhaenger-2.jpg", titel: "", breite: 1086, hoehe: 724 },
+        { bild: "bilder/keramik/dies-und-das/herzen-rauchbrand.jpg", titel: "", breite: 1086, hoehe: 724 },
+        { bild: "bilder/keramik/dies-und-das/steine.jpg", titel: "", breite: 640, hoehe: 426 },
       ]
     },
   ],
 
   // ------------------------------------------------------------- SKULPTUREN
+  // Werkreihen = Unterordner in bilder/skulpturen/ (die Ordner "reste" werden nicht gezeigt)
   skulpturen: [
     {
-      reihe: "Figuren",
-      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Figuren]",
+      reihe: "Kerberus Kompanen",
+      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Kerberus Kompanen]",
       bilder: [
-        { bild: "bilder/skulpturen/figuren/schwester.jpg", titel: "", breite: 1536, hoehe: 2048 },
-        { bild: "bilder/skulpturen/figuren/bockige-nah.jpg", titel: "", breite: 1066, hoehe: 1600 },
-        { bild: "bilder/skulpturen/figuren/bockige.jpg", titel: "", breite: 640, hoehe: 426 },
-        { bild: "bilder/skulpturen/figuren/badewanne.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/figuren/zahnarzt.jpg", titel: "", breite: 1369, hoehe: 1600 },
-        { bild: "bilder/skulpturen/figuren/kamel.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/figuren/kamel-ganz.jpg", titel: "", breite: 1066, hoehe: 1600 },
+        { bild: "bilder/skulpturen/kerberus-kompanen/krakelee-tier-detail.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/kerberus-kompanen/gabel-tier.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/kerberus-kompanen/tier-detail.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/kerberus-kompanen/krakelee-tier.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/kerberus-kompanen/mond-tier.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/kerberus-kompanen/mond-tier-detail.jpg", titel: "", breite: 1254, hoehe: 1254 },
       ]
     },
     {
-      reihe: "Hunde",
-      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Hunde]",
+      reihe: "Tiere",
+      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Tiere]",
       bilder: [
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-1.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/hunde/zwei-hunde.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-3.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-2.jpg", titel: "", breite: 640, hoehe: 426 },
-        { bild: "bilder/skulpturen/hunde/hund-skulptural-6.jpg", titel: "", breite: 1600, hoehe: 1066 },
-        { bild: "bilder/skulpturen/hunde/hund-raku.jpg", titel: "", breite: 1066, hoehe: 1600 },
-        { bild: "bilder/skulpturen/hunde/hund-rauchbrand-nah.jpg", titel: "", breite: 1573, hoehe: 1600 },
+        { bild: "bilder/skulpturen/tiere/zotteltier-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/esel-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/hund-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/hund-2.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/hund-3.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/zotteltier-2.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/tapir-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/tapire-paar.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/fuchs.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/tiere/esel-2.jpg", titel: "", breite: 1254, hoehe: 1254 },
+        { bild: "bilder/skulpturen/tiere/tier-detail.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/tiere/hund-4.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tiere/tapir-mama.jpg", titel: "", breite: 1024, hoehe: 1536 },
       ]
     },
     {
-      reihe: "Tierskulpturen",
-      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Tierskulpturen]",
+      reihe: "Zwiegespräche",
+      text: "[PLATZHALTER: Kurzer Text zur Werkreihe Zwiegespräche]",
       bilder: [
-        { bild: "bilder/skulpturen/tierskulpturen/fuchs.jpg", titel: "", breite: 720, hoehe: 540 },
-        { bild: "bilder/skulpturen/tierskulpturen/stacheltier.jpg", titel: "", breite: 1600, hoehe: 1472 },
-        { bild: "bilder/skulpturen/tierskulpturen/esel-nah.jpg", titel: "", breite: 1549, hoehe: 1600 },
-        { bild: "bilder/skulpturen/tierskulpturen/esel.jpg", titel: "", breite: 604, hoehe: 603 },
+        { bild: "bilder/skulpturen/zwiegespraeche/sitzender.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/badende-ruecken.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/kamel.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/badende-gruppe-2.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/kamel-sockel.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/badende-gruppe-1.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/badewanne.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/frau-sockel-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/maedchen-ziege.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/frau-sockel-2.jpg", titel: "", breite: 1024, hoehe: 1536 },
       ]
     },
   ],
 
   // ---------------------------------------------------------------- MALEREI
-  // Vorerst ohne Werkreihen: reihe ist leer, daher keine Zwischenüberschrift
+  // Werkreihen = Unterordner in bilder/malerei/.
+  // Die erste Reihe hat keinen Namen: Bilder ohne Unterordner, ohne Überschrift.
   malerei: [
     {
       reihe: "",
       text: "",
       bilder: [
-        { bild: "bilder/malerei/stier.jpg", titel: "", breite: 960, hoehe: 720 },
+        { bild: "bilder/malerei/roter-stier.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/malerei/karomuster.jpg", titel: "", breite: 339, hoehe: 508 },
+      ]
+    },
+    {
+      reihe: "Schichten in Acryl",
+      text: "",
+      bilder: [
+        { bild: "bilder/malerei/schichten-in-acryl/gelb-schwarz-paar.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/malerei/schichten-in-acryl/gelb-schwarz-1.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/schichten-in-acryl/gelb-schwarz-2.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/malerei/schichten-in-acryl/gruen-pink-paar.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/schichten-in-acryl/gruen-pink-1.jpg", titel: "", breite: 339, hoehe: 508 },
+        { bild: "bilder/malerei/schichten-in-acryl/gruen-pink-2.jpg", titel: "", breite: 339, hoehe: 508 },
+        { bild: "bilder/malerei/schichten-in-acryl/abstrakt-hell-triptychon.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/schichten-in-acryl/abstrakt-hell-1.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/schichten-in-acryl/abstrakt-hell-2.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/schichten-in-acryl/abstrakt-rosa.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/schichten-in-acryl/schwarz-weiss.jpg", titel: "", breite: 508, hoehe: 339 },
+      ]
+    },
+    {
+      reihe: "Acryl gespachtelt",
+      text: "",
+      bilder: [
+        { bild: "bilder/malerei/acryl-gespachtelt/blueten-1.jpg", titel: "", breite: 1179, hoehe: 1600 },
+        { bild: "bilder/malerei/acryl-gespachtelt/blueten-2.jpg", titel: "", breite: 999, hoehe: 1468 },
+      ]
+    },
+    {
+      reihe: "Landschaften gespachtelt",
+      text: "",
+      bilder: [
+        { bild: "bilder/malerei/landschaften-gespachtelt/landschaft-wolken.jpg", titel: "", breite: 339, hoehe: 508 },
+        { bild: "bilder/malerei/landschaften-gespachtelt/landschaft-haus.jpg", titel: "", breite: 339, hoehe: 508 },
+      ]
+    },
+    {
+      reihe: "Kerzen mit Acryl",
+      text: "",
+      bilder: [
+        { bild: "bilder/malerei/kerzen-mit-acryl/kerzen-reihe-1.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/kerzen-mit-acryl/kerzen-reihe-2.jpg", titel: "", breite: 508, hoehe: 339 },
+        { bild: "bilder/malerei/kerzen-mit-acryl/kerzen-glas-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/malerei/kerzen-mit-acryl/kerzen-glas-2.jpg", titel: "", breite: 339, hoehe: 508 },
+        { bild: "bilder/malerei/kerzen-mit-acryl/kerzen-glas-3.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/malerei/kerzen-mit-acryl/kerzen-eimer.jpg", titel: "", breite: 339, hoehe: 508 },
       ]
     },
   ],
