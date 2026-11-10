@@ -1,33 +1,47 @@
 /* ==========================================================================
    Adventsgestaltung – nur für die Zeit der Aktion
    --------------------------------------------------------------------------
-   Roter Balken „Der helfende Pruttinger Adventskalender“ unter der
-   Navigation der Startseite.
+   Titel „Der helfende Pruttinger Adventskalender“ auf der Startseite:
+   eine feine Überzeile mit kurzer roter Linie davor.
 
    Nach der Aktion entfernen:
-   1. in index.html den Block "ADVENTS-BALKEN" löschen
+   1. in index.html die Zeile <p class="aktion-titel"> löschen
    2. in index.html oben die Zeile mit advent.css löschen
    3. diese Datei löschen
    ========================================================================== */
 
-.advent-banner {
-  padding: 0.7rem var(--abstand-rand);
-  background-color: var(--farbe-atelierrot);
-  color: var(--farbe-papier);
-  text-align: center;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.advent-banner p {
+.aktion-titel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin: 0;
+  padding-block: 0.9rem;
+  color: var(--farbe-atelierrot);
+  font-family: var(--schrift-akzent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
-/* Am Laptop etwas größer und luftiger */
+/* Die kurze rote Linie vor dem Text */
+.aktion-titel::before {
+  content: "";
+  flex: 0 0 2rem;
+  height: 1.5px;
+  background-color: currentColor;
+}
+
+/* Am Laptop etwas größer, mit Abstand zur großen Überschrift */
 @media (min-width: 60rem) {
-  .advent-banner {
-    padding-block: 1rem;
-    font-size: 1.125rem;
+  .aktion-titel {
+    padding-block: 0;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.12em;      /* etwas enger, damit der Titel in eine Zeile passt */
+  }
+
+  .aktion-titel::before {
+    flex-basis: 3rem;
   }
 }

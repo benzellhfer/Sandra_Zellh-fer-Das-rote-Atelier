@@ -19,7 +19,7 @@
   <link rel="preload" href="bilder/kerzenhalter/kerzenhalter-01.jpg" as="image" fetchpriority="high">
 
   <link rel="stylesheet" href="css/style.css">
-  <!-- Adventsgestaltung (roter Balken): nach der Aktion diese Zeile löschen -->
+  <!-- Adventsgestaltung (Titel-Überzeile): nach der Aktion diese Zeile löschen -->
   <link rel="stylesheet" href="css/advent.css">
 </head>
 <body>
@@ -66,22 +66,17 @@
   <!-- =================== ENDE HEADER =================== -->
 
 
-  <!-- ===================== ADVENTS-BALKEN =====================
-       Roter Balken unter der Navigation. Gestaltung in css/advent.css.
-       Nach der Aktion einfach diesen Block löschen
-       (und die Zeile mit advent.css oben im <head>). -->
-  <div class="advent-banner">
-    <p>Der helfende Pruttinger Adventskalender</p>
-  </div>
-  <!-- =================== ENDE ADVENTS-BALKEN =================== -->
-
-
   <main class="startseite">
 
     <!-- ===================== OBEN: SLIDESHOW + TEXT =====================
          Am Handy steht die Slideshow zuerst (sofort sichtbar),
          am Laptop steht der Text links und die Slideshow rechts. -->
     <section class="start-oben container">
+
+      <!-- Titel der Aktion als feine Überzeile mit kurzer roter Linie.
+           Am Handy ganz oben (über der Slideshow), am Laptop über dem Text.
+           Gestaltung in css/advent.css – nach der Aktion diese Zeile löschen. -->
+      <p class="aktion-titel">Der helfende Pruttinger Adventskalender</p>
 
       <!-- Slideshow der 24 Kerzenhalter.
            Die Bilder werden von js/slideshow.js aus der Liste in

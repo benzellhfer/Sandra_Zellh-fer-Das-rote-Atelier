@@ -510,11 +510,19 @@ main {
   padding-top: 0;
 }
 
-/* Oberer Bereich: am Handy untereinander (Slideshow zuerst, dann Text) */
+/* Oberer Bereich: am Handy untereinander (Titel, Slideshow, Text).
+   Die Felder sind wie eine kleine Karte benannt (grid-template-areas). */
 .start-oben {
   display: grid;
-  gap: 2rem;
+  grid-template-areas:
+    "titel"
+    "slideshow"
+    "text";
 }
+
+.aktion-titel { grid-area: titel; }
+.slideshow    { grid-area: slideshow; }
+.start-text   { grid-area: text; margin-top: 2rem; }
 
 /* ---- Slideshow ---- */
 
@@ -945,15 +953,26 @@ a.kachel:hover .kachel-titel::after {
     padding-top: 3rem;
   }
 
+  /* Links Titel und Text (zusammen senkrecht mittig), rechts die Slideshow.
+     Die leeren Zeilen "." oben und unten schieben den linken Teil in die Mitte. */
   .start-oben {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    align-items: center;
-    gap: 3.5rem;
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas:
+      ".     slideshow"
+      "titel slideshow"
+      "text  slideshow"
+      ".     slideshow";
+    column-gap: 3.5rem;
   }
 
   .slideshow {
-    order: 2;                    /* nach rechts */
+    align-self: center;          /* nur so hoch wie nötig, senkrecht mittig */
     margin-inline: 0;
+  }
+
+  .start-text {
+    margin-top: 0;
   }
 
   /* Am Laptop Querformat, damit die Slideshow auf den Bildschirm passt.
@@ -975,9 +994,6 @@ a.kachel:hover .kachel-titel::after {
     right: 0;
   }
 
-  .start-text {
-    order: 1;                    /* nach links */
-  }
 
   .kacheln {
     margin-top: 5rem;
