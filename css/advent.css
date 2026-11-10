@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Adventsgestaltung – nur für die Zeit der Aktion
+   --------------------------------------------------------------------------
+   Roter Balken „Der helfende Pruttinger Adventskalender“ unter der
+   Navigation der Startseite.
+
+   Nach der Aktion entfernen:
+   1. in index.html den Block "ADVENTS-BALKEN" löschen
+   2. in index.html oben die Zeile mit advent.css löschen
+   3. diese Datei löschen
+   ========================================================================== */
+
+.advent-banner {
+  padding: 0.7rem var(--abstand-rand);
+  background-color: var(--farbe-atelierrot);
+  color: var(--farbe-papier);
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.advent-banner p {
+  margin: 0;
+}
+
+/* Am Laptop etwas größer und luftiger */
+@media (min-width: 60rem) {
+  .advent-banner {
+    padding-block: 1rem;
+    font-size: 1.125rem;
+  }
+}

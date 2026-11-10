@@ -77,20 +77,25 @@ if (slideshow && typeof KERZENHALTER !== "undefined") {
     dia.appendChild(beschriftung);
     spur.appendChild(dia);
 
-    // Nummern-Knopf zum direkten Springen
-    const knopf = document.createElement("button");
-    knopf.type = "button";
-    knopf.className = "slideshow-nummer";
-    knopf.textContent = kerzenhalter.nummer;
-    knopf.setAttribute("aria-label", "Kerzenhalter Nr. " + kerzenhalter.nummer + " zeigen");
-    knopf.addEventListener("click", function () {
-      stoppen();
-      geheZu(index);
-    });
-    nummernLeiste.appendChild(knopf);
+    // Nummern-Knopf zum direkten Springen – nur, wenn es im HTML eine
+    // Nummernleiste in der Slideshow gibt (auf der Startseite stehen die
+    // Losnummern inzwischen darunter, siehe js/losnummern.js)
+    if (nummernLeiste) {
+      const knopf = document.createElement("button");
+      knopf.type = "button";
+      knopf.className = "slideshow-nummer";
+      knopf.textContent = kerzenhalter.nummer;
+      knopf.setAttribute("aria-label", "Kerzenhalter Nr. " + kerzenhalter.nummer + " zeigen");
+      knopf.addEventListener("click", function () {
+        stoppen();
+        geheZu(index);
+      });
+      nummernLeiste.appendChild(knopf);
+    }
   });
 
-  const nummernKnoepfe = nummernLeiste.querySelectorAll(".slideshow-nummer");
+  // Gibt es keine Nummernleiste, ist die Liste einfach leer
+  const nummernKnoepfe = nummernLeiste ? nummernLeiste.querySelectorAll(".slideshow-nummer") : [];
 
 
   // ---- 2. Zu einem bestimmten Bild wechseln ----

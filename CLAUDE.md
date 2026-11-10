@@ -2,16 +2,19 @@
 
 ## Worum es geht
 Website, die die Werke meiner Mutter zeigt: Keramik, Skulpturen und Malerei.
-Hauptanlass ist die **Adventsaktion**: 24 handgetöpferte Kerzenhalter in freier Form.
+Hauptanlass ist **Der helfende Pruttinger Adventskalender**: 24 handgetöpferte
+Kerzenhalter in freier Form („24 Loskugeln – 24 Unikate“).
 
 So funktioniert die Aktion:
 - Die Kerzenhalter sind tierische Figuren aus Keramik, jede ein Einzelstück.
-- Der Erlös der Aktion geht zu 100 % an einen guten Zweck.
-- Die Kerzenhalter sind bereits verkauft. Käufer ziehen einen Zettel, welchen
-  Kerzenhalter sie bekommen, ist also Zufall.
+- Lose (Loskugeln) gibt es bei Nahkauf Wimmer in Prutting zum Benefizpreis von 49 €.
+  Hinter jeder Losnummer steckt ein Kerzenhalter, welchen man bekommt, ist Zufall.
+- Der Erlös geht an die Pruttinger Dorfstiftung.
 - Die Aktion steht in einem Schaufenster. Dort hängt ein QR-Code, über den die
   Leute auf die Website kommen und sehen, was sie bekommen haben bzw. was es gibt.
-- Auf der Website wird NICHTS verkauft: kein Shop, keine Preise, kein Bestellformular.
+- Auf der Website wird NICHTS verkauft: kein Shop, kein Bestellformular.
+  Der Preis (49 €) steht nur auf der Detailseite des Adventskalenders.
+- Vorlage für Texte und Seitenaufbau: `Auswahl Website/Seitenaufbau und Designidee.pptx`
 
 ## Besucher
 - Fast alle kommen über den QR-Code, also **meistens vom Handy**, oft unterwegs
@@ -20,25 +23,29 @@ So funktioniert die Aktion:
   ohne Scrollen.
 
 ## Seitenstruktur
-1. **Startseite**
-   - Ganz oben, sofort sichtbar: Slideshow der 24 Kerzenhalter
-   - Jeder Kerzenhalter mit gut lesbarer Nummer (01–24) und Foto,
-     damit Käufer „ihren“ Kerzenhalter wiederfinden
-   - Kurzer Satz zur Aktion
-   - Darunter kurze Teaser zu Über mich, Keramik, Skulpturen, Malerei
-2. **Adventsaktion** (Unterseite): alle 24 Kerzenhalter als Raster,
-   Klick auf einen öffnet ihn groß (Lightbox), kurze Erklärung der Aktion
-3. **Über mich**: Werdegang, Atelier, Foto der Künstlerin
-4. **Keramik**: Galerie
-5. **Skulpturen**: Galerie
-6. **Malerei**: Galerie
-7. **Kontakt**: Kontaktmöglichkeit, Adresse/Atelier
-8. **Impressum** und **Datenschutz** (im Footer verlinkt)
+1. **Startseite** (`index.html`)
+   - Roter Balken unter der Navigation: „Der helfende Pruttinger Adventskalender“
+     (in `css/advent.css`, nach der Aktion entfernbar)
+   - Ganz oben, sofort sichtbar: Slideshow der 24 Kerzenhalter, daneben Text,
+     Logos (Dorfstiftung, Nahkauf) und „Mehr Infos“
+   - Losnummern 1–24 als rote Felder, Klick öffnet den Kerzenhalter groß
+   - „Aus meinem Atelier:“ Kacheln (Petersburger Hängung) zu den Werkreihen und „Danke“
+2. **Der helfende Adventskalender** (`adventsaktion.html`): So funktioniert's,
+   Preis, Freude garantiert, Warum?, alle 24 Kerzenhalter als Raster mit Lightbox
+3. **Skulptur** (`skulpturen.html`): Standhaft, Kerberus Kumpanen, Zwiegespräche, Tierisch hell
+4. **Keramische Objekte** (`keramik.html`): Rauchbrand, Skulpturale Gefäße, Von Herzen
+5. **Malerei** (`malerei.html`): Schichten in Acryl und Wachs, Stille Ferne,
+   Blüten abstrakt, Farbreihen
+6. **Über mich** (`ueber-mich.html`): Text, Foto der Künstlerin, Frühwerk
+7. **Danke** (`danke.html`): Dank an Wegbegleiter (Startseiten-Kachel und Footer)
+8. **Kontakt** (`kontakt.html`): im Footer und über das Brief-Symbol oben rechts
+9. **Impressum** und **Datenschutz** (im Footer verlinkt)
 
 ## Navigation
-- Oben: „Das rote Atelier“ links, Menü rechts
+- Oben: Menü links, Logo mittig, Instagram und Brief-Symbol (→ Kontakt) rechts
+- Menü: Adventskalender, Skulptur, Keramische Objekte, Malerei, Über mich
 - Auf dem Handy: Hamburger-Menü
-- Menüpunkt „Adventsaktion“ hervorgehoben (Atelierrot)
+- Menüpunkt „Adventskalender“ hervorgehoben (Atelierrot)
 
 ## Design
 - Stil: warm, handgemacht, ruhig, viel Weißraum. Die Werke stehen im Mittelpunkt.
@@ -66,7 +73,9 @@ So funktioniert die Aktion:
 - Bilder optimiert (komprimiert, moderne Formate, passende Größen, Lazy Loading),
   damit die Seite auch mit mobilen Daten schnell lädt
 - Bilder liegen in `bilder/` mit Unterordnern: `kerzenhalter/`, `keramik/`,
-  `skulpturen/`, `malerei/`
+  `skulpturen/`, `malerei/` (darin je ein Ordner pro Werkreihe), außerdem
+  `startseite/`, `ueber-mich/`, `danke/`, `partner/`, `logo/`
+- Galerien (Werkreihen, Texte, Bilder) stehen zentral in `js/galerie-daten.js`
 - Dateinamen Kerzenhalter: `kerzenhalter-01.jpg` bis `kerzenhalter-24.jpg`
 
 ## Arbeitsweise

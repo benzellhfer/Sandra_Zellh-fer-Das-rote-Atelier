@@ -13,7 +13,7 @@
    9. Adventsaktion-Seite: Erklärung und Raster
    10. Lightbox (Großansicht, auch für die Galerien)
    11. Galerien: Keramik, Skulpturen, Malerei
-   12. Über mich und Kontakt
+   12. Über mich, Kontakt und Danke
    13. Impressum und Datenschutz
 
    "Mobile First": Die normalen Regeln gelten fürs Handy.
@@ -632,21 +632,13 @@ main {
   right: 0.75rem;
 }
 
-/* Zeile unter dem Bild: "Finde deine Nummer" + Pause-Knopf */
+/* Zeile unter dem Bild: Pause-Knopf rechts */
 .slideshow-steuerung {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding-inline: var(--abstand-rand);
   margin-top: 0.5rem;
-}
-
-.slideshow-hinweis {
-  margin: 0;
-  font-family: var(--schrift-akzent);
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 .slideshow-pause {
@@ -664,41 +656,86 @@ main {
   color: var(--farbe-atelierrot);
 }
 
-/* Nummern-Knöpfe 01–24: am Handy 8 pro Reihe */
-.slideshow-nummern {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 0.375rem;
-  padding-inline: var(--abstand-rand);
-}
-
-.slideshow-nummer {
-  min-height: 2.5rem;
-  padding: 0;
-  border: 1px solid var(--farbe-linie);
-  border-radius: 2px;
-  background: none;
-  color: var(--farbe-anthrazit);
-  font-family: var(--schrift-akzent);
-  font-size: 0.9375rem;
-  cursor: pointer;
-}
-
-.slideshow-nummer:hover {
-  border-color: var(--farbe-atelierrot);
-  color: var(--farbe-atelierrot);
-}
-
-/* Die Nummer des gerade gezeigten Kerzenhalters: rot gefüllt */
-.slideshow-nummer[aria-current="true"] {
-  background-color: var(--farbe-atelierrot);
-  border-color: var(--farbe-atelierrot);
-  color: var(--farbe-papier);
-}
-
-/* ---- Textkarte ---- */
+/* ---- Textblock ---- */
 .start-text h1 {
   font-size: clamp(2rem, 7vw, 3rem);
+}
+
+/* "Freude schenken und für einen guten Zweck." – fett */
+.start-untertitel {
+  font-weight: 700;
+}
+
+/* Logos der Partner (Dorfstiftung, Nahkauf) */
+.partner-logo {
+  width: 13rem;
+  margin-bottom: 1rem;
+}
+
+.partner-logo-nahkauf {
+  width: 11rem;
+}
+
+/* "Lose erhältlich ab sofort bei Nahkauf Wimmer" */
+.start-lose {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* ---- Losnummern 1–24 (rote Felder unter der Slideshow) ---- */
+.losnummern {
+  margin-top: 3rem;
+}
+
+.losnummern h2,
+.kacheln h2 {
+  color: var(--farbe-atelierrot);
+  font-size: clamp(1.25rem, 3.2vw, 1.625rem);
+}
+
+/* Am Handy 6 pro Reihe (4 Reihen), damit die Felder groß genug zum Tippen sind */
+.losnummern-raster {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ein rotes, quadratisches Feld mit heller Nummer */
+.losnummer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background-color: var(--farbe-atelierrot);
+  color: var(--farbe-papier);
+  font-family: var(--schrift-akzent);
+  font-size: 1.125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.losnummer:hover {
+  background-color: var(--farbe-atelierrot-dunkel);
+}
+
+/* Ab Tablet/Laptop: 12 pro Reihe (2 Reihen, wie in der PowerPoint) */
+@media (min-width: 48rem) {
+  .losnummern-raster {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.75rem;
+  }
+
+  .losnummer {
+    font-size: 1.25rem;
+  }
 }
 
 /* ---- Kacheln ---- */
@@ -706,29 +743,28 @@ main {
   margin-top: 4rem;
 }
 
-/* Am Handy 2 Kacheln nebeneinander */
-/* Kacheln als Petersburger Hängung nach der Skizze.
+/* Kacheln als Petersburger Hängung nach der PowerPoint (Folie 1).
    Die Anordnung wird mit "grid-template-areas" wie eine kleine Karte
    gezeichnet: Jedes Wort ist ein Feld, gleiche Wörter nebeneinander bzw.
    untereinander bilden eine große Kachel. Die Fotos werden passend
    zugeschnitten (die Mitte bleibt sichtbar).
 
-   Am Handy (2 Spalten):              Ab Tablet/Laptop (4 Spalten, wie Skizze):
-     tier       tier                    tier  tier    rauchbrand advent
-     rauchbrand advent                  hunde malerei malerei    zwie
-     malerei    malerei                 hunde malerei malerei    danke
-     hunde      zwie
-     hunde      danke                                                    */
+   Am Handy (2 Spalten):             Ab Tablet/Laptop (5 Spalten, wie Folie 1):
+     kerberus  kerberus                rauchbrand standhaft standhaft kerberus kerberus
+     rauchbrand standhaft              schichten  schichten zwie      zwie     tierisch
+     schichten schichten               schichten  schichten zwie      zwie     danke
+     zwie      tierisch
+     zwie      danke                                                                   */
 .kachel-raster {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 13rem 11rem 12rem 8rem 5rem;
+  grid-template-rows: 13rem 11rem 12rem 10rem 5rem;
   grid-template-areas:
-    "tier       tier"
-    "rauchbrand advent"
-    "malerei    malerei"
-    "hunde      zwie"
-    "hunde      danke";
+    "kerberus   kerberus"
+    "rauchbrand standhaft"
+    "schichten  schichten"
+    "zwie       tierisch"
+    "zwie       danke";
   gap: 0.375rem;                 /* schmale Fuge zwischen den Kacheln */
   list-style: none;
   margin: 0 0 1rem;
@@ -736,12 +772,12 @@ main {
 }
 
 /* Jede Kachel bekommt ihr Feld in der "Karte" oben */
-.kachel-tier       { grid-area: tier; }
 .kachel-rauchbrand { grid-area: rauchbrand; }
-.kachel-advent     { grid-area: advent; }
-.kachel-hunde      { grid-area: hunde; }
-.kachel-malerei    { grid-area: malerei; }
+.kachel-standhaft  { grid-area: standhaft; }
+.kachel-kerberus   { grid-area: kerberus; }
+.kachel-schichten  { grid-area: schichten; }
 .kachel-zwie       { grid-area: zwie; }
+.kachel-tierisch   { grid-area: tierisch; }
 .kachel-danke      { grid-area: danke; }
 
 .kachel {
@@ -826,15 +862,16 @@ a.kachel:hover .kachel-titel {
 /* Ab Tablet-Breite: Anordnung wie in der Skizze */
 @media (min-width: 48rem) {
   .kachel-raster {
-    /* Spaltenbreiten: oben teilen sie sich Tierskulpturen (1.+2.),
-       Rauchbrand (3.) und Advent (4.); unten Hunde (1.), Malerei (2.+3.)
-       und Zwiegespräch/Danke (4.) */
-    grid-template-columns: 25fr 20fr 27fr 28fr;
+    /* 5 Spalten, damit oben und unten unterschiedlich breite Kacheln
+       möglich sind (wie in der PowerPoint):
+       oben  Rauchbrand (1.) | Standhaft (2.+3.) | Kerberus (4.+5.)
+       unten Schichten (1.+2.) | Zwiegespräche (3.+4.) | Tierisch hell/Danke (5.) */
+    grid-template-columns: 25fr 6fr 25fr 12fr 16fr;
     grid-template-rows: 16rem 10rem 6rem;
     grid-template-areas:
-      "tier  tier    rauchbrand advent"
-      "hunde malerei malerei    zwie"
-      "hunde malerei malerei    danke";
+      "rauchbrand standhaft standhaft kerberus kerberus"
+      "schichten  schichten zwie      zwie     tierisch"
+      "schichten  schichten zwie      zwie     danke";
     gap: 0.5rem;
   }
 
@@ -883,13 +920,8 @@ a.kachel:hover .kachel-titel {
     padding-inline: 0;
   }
 
-  .slideshow-steuerung,
-  .slideshow-nummern {
+  .slideshow-steuerung {
     padding-inline: 0;
-  }
-
-  .slideshow-nummern {
-    grid-template-columns: repeat(12, 1fr);
   }
 
   .start-text {
@@ -939,6 +971,40 @@ a.kachel:hover .kachel-titel {
   font-family: var(--schrift-akzent);
   font-weight: 500;
   color: var(--farbe-atelierrot);
+}
+
+/* "Freude garantiert" und "Warum?": am Handy untereinander */
+.aktion-bloecke {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 60rem;
+}
+
+.aktion-block h2 {
+  margin-top: 0;
+}
+
+/* Foto der Dackel-Kerzenhalter */
+.aktion-foto {
+  width: 12rem;
+  background-color: var(--farbe-flaeche);
+}
+
+/* Schlusssatz: etwas größer und in Atelierrot */
+.aktion-schluss {
+  max-width: 42rem;
+  margin: 3rem 0 4rem;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--farbe-atelierrot);
+}
+
+/* Ab Tablet-Breite: beide Blöcke nebeneinander */
+@media (min-width: 48rem) {
+  .aktion-bloecke {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
 }
 
 /* Raster: am Handy 2 nebeneinander */
@@ -1262,7 +1328,7 @@ html.lightbox-offen {
 
 
 /* --------------------------------------------------------------------------
-   12. Über mich und Kontakt
+   12. Über mich, Kontakt und Danke
    -------------------------------------------------------------------------- */
 
 /* Etwas größerer Einleitungstext */
@@ -1278,9 +1344,22 @@ html.lightbox-offen {
   gap: 2rem;
 }
 
+/* Die beiden Fotos (Künstlerin, Frühwerk) untereinander */
+.ueber-mich-fotos {
+  display: grid;
+  gap: 1.5rem;
+}
+
 .ueber-mich-foto {
   margin: 0;
   max-width: 26rem;              /* am Handy nicht riesig */
+}
+
+/* Bildunterschrift, z. B. "Frühwerk, entstanden bei Berta Schmid, 1982" */
+.ueber-mich-foto figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--schrift-akzent);
+  font-size: 0.8125rem;
 }
 
 .ueber-mich-foto img {
@@ -1337,6 +1416,51 @@ html.lightbox-offen {
   .kontakt-bloecke {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+  }
+}
+
+
+/* ---- Danke ---- */
+.danke-liste {
+  display: grid;
+  gap: 2rem;
+  max-width: 48rem;
+  list-style: none;
+  margin: 2rem 0 3rem;
+  padding: 0;
+}
+
+/* Ein Eintrag: Bild links, Text rechts (auch am Handy, Bild ist klein) */
+.danke-eintrag {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.danke-eintrag p {
+  margin: 0;
+}
+
+.danke-eintrag a {
+  font-weight: 600;
+}
+
+/* Logos nicht größer als nötig */
+.danke-logo {
+  max-height: 3.5rem;
+  width: auto;
+}
+
+.danke-atelier {
+  margin: 0;
+  max-width: 48rem;
+}
+
+@media (min-width: 48rem) {
+  .danke-eintrag {
+    grid-template-columns: 10rem 1fr;
+    gap: 2rem;
   }
 }
 
