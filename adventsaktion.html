@@ -65,16 +65,27 @@
     <div class="container">
 
       <!-- ===================== ERKLÄRUNG DER AKTION (PowerPoint, Folie 2) ===================== -->
+      <!-- Oben zweispaltig: links Titel und Schritte, rechts das Foto
+           (am Handy steht das Foto unter dem Titel) -->
       <section class="aktion-intro">
-        <h1>Der helfende Adventskalender Prutting</h1>
+        <div class="aktion-kopf">
+          <p class="ueberzeile">24 Loskugeln – 24 Unikate</p>
+          <h1>Der helfende Adventskalender Prutting</h1>
+        </div>
 
+        <figure class="aktion-foto">
+          <img src="bilder/skulpturen/tierisch-hell/zwei-dackel.jpg" alt="Zwei Dackel aus Keramik als Kerzenhalter mit bunten Kerzen" width="1024" height="1536">
+        </figure>
+
+        <div class="aktion-ablauf">
         <h2>So funktioniert’s</h2>
         <ol class="aktion-schritte">
           <li><strong>Kaufen:</strong> Holt euch bei Nahkauf Wimmer (Kirchstraße 2, 83134 Prutting) während der Öffnungszeiten eine von 24 Loskugeln – zum Benefizpreis von <strong>49 €</strong>. Der Verkauf startet nach dem 1. Advent und geht bis Weihnachten. Und wer mag, darf auch gern mehr geben, denn jeder Euro hilft.</li>
           <li><strong>Verschenken:</strong> Schenkt das Los euren Liebsten zu Weihnachten und lasst euch von ihrer Freude anstecken.</li>
           <li><strong>Einlösen:</strong> Hinter jeder Losnummer verbirgt sich ein Tier, das ihr vorher im Schaufenster bewundern konntet. Die Beschenkten dürfen ihr Tier nach Weihnachten bei uns abholen.</li>
         </ol>
-        <img class="partner-logo partner-logo-nahkauf" src="bilder/partner/nahkauf-wimmer.jpg" alt="Nahkauf Josef Wimmer" width="1066" height="479" loading="lazy">
+        <img class="partner-logo" src="bilder/partner/nahkauf-wimmer.jpg" alt="Nahkauf Josef Wimmer" width="1066" height="479" loading="lazy">
+        </div>
       </section>
 
       <!-- Zwei Blöcke: am Handy untereinander, am Laptop nebeneinander -->
@@ -82,7 +93,6 @@
         <section class="aktion-block">
           <h2>Freude garantiert</h2>
           <p>Mit einem Los schenkt ihr Vorfreude auf ein Unikat, das nur eure Liebsten bekommen. Jedes Los gewinnt, und die Beschenkten dürfen sich über ein handgefertigtes und handbemaltes Stück freuen.</p>
-          <img class="aktion-foto" src="bilder/kerzenhalter/dackel-paar.jpg" alt="Zwei Dackel aus Keramik als Kerzenhalter mit bunten Kerzen" width="235" height="313" loading="lazy">
         </section>
 
         <section class="aktion-block">
@@ -93,7 +103,10 @@
         </section>
       </div>
 
-      <p class="aktion-schluss">Ob tierischer Kerzenhalter, Freude oder ein gutes Gefühl: Ihr gewinnt immer – und Prutting gewinnt mit!</p>
+      <!-- Schlusssatz als großes Zitat zwischen zwei feinen Linien -->
+      <blockquote class="aktion-schluss">
+        <p>Ob tierischer Kerzenhalter, Freude oder ein gutes Gefühl: Ihr gewinnt immer – und Prutting gewinnt mit!</p>
+      </blockquote>
       <!-- =================== ENDE ERKLÄRUNG =================== -->
 
 
@@ -101,6 +114,7 @@
            Wird von js/kerzenhalter-raster.js aus der Liste in
            js/kerzenhalter-daten.js erzeugt. Klick öffnet die Lightbox. -->
       <section aria-labelledby="raster-ueberschrift">
+        <p class="ueberzeile">Im Schaufenster</p>
         <h2 id="raster-ueberschrift">Alle 24 Tiere</h2>
         <ul class="kerzenhalter-raster"></ul>
       </section>
@@ -114,8 +128,7 @@
   <footer class="seitenfuss">
     <div class="container seitenfuss-oben">
       <div class="seitenfuss-marke">
-        <img src="bilder/logo/logo-header.png" alt="" width="480" height="330" loading="lazy">
-        <p class="seitenfuss-name">Das rote Atelier</p>
+        <img src="bilder/logo/logo-header.png" alt="Das rote Atelier – Keramik, Skulptur, Malerei" width="480" height="330" loading="lazy">
       </div>
       <nav class="seitenfuss-links" aria-label="Seitenübersicht">
         <ul>

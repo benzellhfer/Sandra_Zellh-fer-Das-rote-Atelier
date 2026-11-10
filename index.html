@@ -109,12 +109,22 @@
         <p class="start-untertitel">Freude schenken und für einen guten Zweck.</p>
         <p>Tierische Figuren aus Keramik. Hinter jeder Losnummer verbirgt sich ein Einzelstück. Der Erlös geht an die Pruttinger Dorfstiftung.</p>
 
-        <!-- Logos der Partner (Dateien in bilder/partner/) -->
-        <img class="partner-logo" src="bilder/partner/pruttinger-dorfstiftung.png" alt="Pruttinger Dorfstiftung" width="290" height="96">
         <p class="start-lose">Lose erhältlich ab sofort bei Nahkauf Wimmer</p>
-        <img class="partner-logo partner-logo-nahkauf" src="bilder/partner/nahkauf-wimmer.jpg" alt="Nahkauf Josef Wimmer" width="1066" height="479">
 
-        <p><a class="pfeil-link" href="adventsaktion.html">Mehr Infos</a></p>
+        <!-- Logos der Partner nebeneinander, mit kleiner Beschriftung
+             (Dateien in bilder/partner/) -->
+        <ul class="partner">
+          <li>
+            <span class="partner-label">Erlös für</span>
+            <img class="partner-logo" src="bilder/partner/pruttinger-dorfstiftung.png" alt="Pruttinger Dorfstiftung" width="290" height="96">
+          </li>
+          <li>
+            <span class="partner-label">Lose bei</span>
+            <img class="partner-logo" src="bilder/partner/nahkauf-wimmer.jpg" alt="Nahkauf Josef Wimmer" width="1066" height="479">
+          </li>
+        </ul>
+
+        <p><a class="mehr-link" href="adventsaktion.html">Mehr Infos <span aria-hidden="true">→</span></a></p>
       </div>
     </section>
     <!-- =================== ENDE OBEN =================== -->
@@ -125,6 +135,7 @@
          (Lightbox). Die Felder werden von js/losnummern.js aus der Liste
          in js/kerzenhalter-daten.js erzeugt. -->
     <section class="losnummern container" aria-labelledby="losnummern-ueberschrift">
+      <p class="ueberzeile">Deine Losnummer</p>
       <h2 id="losnummern-ueberschrift">Klicke auf deine Losnummer und finde heraus, welches Tier nun dir gehört.</h2>
       <ul class="losnummern-raster"></ul>
     </section>
@@ -142,7 +153,8 @@
          loading="lazy": Bild lädt erst, wenn man hinscrollt (spart mobile Daten)
          Die Links mit "#…" springen direkt zur Werkreihe auf der Galerieseite. -->
     <section class="kacheln container" aria-labelledby="kacheln-ueberschrift">
-      <h2 id="kacheln-ueberschrift">Aus meinem Atelier:</h2>
+      <!-- Überschrift im Stil einer kleinen Überzeile (Fira Code, Großbuchstaben) -->
+      <h2 id="kacheln-ueberschrift" class="ueberzeile">Aus meinem Atelier</h2>
       <ul class="kachel-raster">
         <li class="kachel-rauchbrand"><a class="kachel" href="keramik.html#rauchbrand">
           <img src="bilder/startseite/kachel-rauchbrand.jpg" alt="" loading="lazy">
@@ -176,8 +188,7 @@
   <footer class="seitenfuss">
     <div class="container seitenfuss-oben">
       <div class="seitenfuss-marke">
-        <img src="bilder/logo/logo-header.png" alt="" width="480" height="330" loading="lazy">
-        <p class="seitenfuss-name">Das rote Atelier</p>
+        <img src="bilder/logo/logo-header.png" alt="Das rote Atelier – Keramik, Skulptur, Malerei" width="480" height="330" loading="lazy">
       </div>
       <nav class="seitenfuss-links" aria-label="Seitenübersicht">
         <ul>

@@ -15,6 +15,7 @@
    11. Galerien: Keramik, Skulpturen, Malerei
    12. Über mich, Kontakt und Danke
    13. Impressum und Datenschutz
+   14. Sanftes Einblenden beim Scrollen
 
    "Mobile First": Die normalen Regeln gelten fürs Handy.
    Regeln in "@media (min-width: …)" gelten zusätzlich für größere Bildschirme.
@@ -437,19 +438,9 @@ main {
   margin-bottom: 3rem;
 }
 
+/* Logo mit Haus und Schriftzug (enthält den Namen schon) */
 .seitenfuss-marke img {
-  width: 5rem;
-  margin-bottom: 0.75rem;
-}
-
-/* Großer roter Name wie im Entwurf */
-.seitenfuss-name {
-  margin: 0;
-  color: var(--farbe-atelierrot);
-  font-size: clamp(1.5rem, 5vw, 2rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.1;
+  width: 9rem;
 }
 
 /* Zwei Link-Spalten */
@@ -530,6 +521,7 @@ main {
 /* Am Handy geht die Slideshow über die volle Bildschirmbreite
    (der negative Rand hebt den Abstand des Containers auf) */
 .slideshow {
+  position: relative;            /* damit der Pause-Knopf sich daran ausrichtet */
   margin-inline: calc(-1 * var(--abstand-rand));
 }
 
@@ -577,6 +569,8 @@ main {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0 0.9rem;
+  min-height: 3.25rem;           /* gleiche Höhe wie der Pause-Knopf daneben */
+  padding-right: 7rem;           /* rechts Platz für den Pause-Knopf lassen */
   background-color: var(--farbe-papier);
   line-height: 1.3;
 }
@@ -632,13 +626,15 @@ main {
   right: 0.75rem;
 }
 
-/* Zeile unter dem Bild: Pause-Knopf rechts */
+/* Pause-Knopf: rechts in derselben Zeile wie "Nr. 07"
+   (liegt über der Beschriftungszeile, unten rechts in der Slideshow) */
 .slideshow-steuerung {
+  position: absolute;
+  right: var(--abstand-rand);
+  bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-inline: var(--abstand-rand);
-  margin-top: 0.5rem;
+  height: 3.25rem;
 }
 
 .slideshow-pause {
@@ -666,20 +662,61 @@ main {
   font-weight: 700;
 }
 
-/* Logos der Partner (Dorfstiftung, Nahkauf) */
-.partner-logo {
-  width: 13rem;
-  margin-bottom: 1rem;
-}
-
-.partner-logo-nahkauf {
-  width: 11rem;
-}
-
 /* "Lose erhältlich ab sofort bei Nahkauf Wimmer" */
 .start-lose {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
   font-weight: 600;
+}
+
+/* Logos der Partner: nebeneinander, gleich hoch, mit kleiner Beschriftung */
+.partner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.25rem 2.5rem;
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+}
+
+.partner li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.partner-label {
+  font-family: var(--schrift-akzent);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Alle Logos gleich hoch. "multiply" lässt den weißen Hintergrund
+   eines Logos mit dem Papier-Ton verschmelzen (kein weißer Kasten). */
+.partner-logo {
+  height: 3rem;
+  width: auto;
+  mix-blend-mode: multiply;
+}
+
+/* "Mehr Infos →": kräftiger Link, Pfeil rutscht beim Darüberfahren nach rechts */
+.mehr-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;           /* groß genug zum Antippen */
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.mehr-link span {
+  transition: transform 0.2s ease;
+}
+
+.mehr-link:hover span {
+  transform: translateX(0.3rem);
 }
 
 /* ---- Losnummern 1–24 (rote Felder unter der Slideshow) ---- */
@@ -687,10 +724,19 @@ main {
   margin-top: 3rem;
 }
 
-.losnummern h2,
-.kacheln h2 {
-  color: var(--farbe-atelierrot);
+.losnummern h2 {
+  max-width: 40rem;
   font-size: clamp(1.25rem, 3.2vw, 1.625rem);
+}
+
+/* Überzeile über den Abschnitten in Atelierrot */
+.losnummern .ueberzeile,
+.kacheln .ueberzeile {
+  color: var(--farbe-atelierrot);
+}
+
+.kacheln .ueberzeile {
+  margin-bottom: 1.25rem;
 }
 
 /* Am Handy 6 pro Reihe (4 Reihen), damit die Felder groß genug zum Tippen sind */
@@ -698,12 +744,14 @@ main {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 0.5rem;
+  max-width: 48rem;              /* am Laptop nicht zu wuchtig */
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Ein rotes, quadratisches Feld mit heller Nummer */
+/* Ein quadratisches Feld mit feinem roten Rahmen und roter Nummer.
+   Beim Darüberfahren oder Antippen füllt es sich rot. */
 .losnummer {
   display: flex;
   align-items: center;
@@ -711,19 +759,21 @@ main {
   width: 100%;
   aspect-ratio: 1 / 1;
   padding: 0;
-  border: 0;
+  border: 1.5px solid var(--farbe-atelierrot);
   border-radius: 2px;
-  background-color: var(--farbe-atelierrot);
-  color: var(--farbe-papier);
+  background: none;
+  color: var(--farbe-atelierrot);
   font-family: var(--schrift-akzent);
   font-size: 1.125rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.losnummer:hover {
-  background-color: var(--farbe-atelierrot-dunkel);
+.losnummer:hover,
+.losnummer:active {
+  background-color: var(--farbe-atelierrot);
+  color: var(--farbe-papier);
 }
 
 /* Ab Tablet/Laptop: 12 pro Reihe (2 Reihen, wie in der PowerPoint) */
@@ -734,7 +784,7 @@ main {
   }
 
   .losnummer {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
 }
 
@@ -800,35 +850,29 @@ main {
   transition: transform 0.4s ease;
 }
 
-/* Ganz leichter weißer Schleier über dem Foto ("ausweißen"):
-   wirkt ruhiger und der Titel ist besser lesbar.
-   Stärke einstellen: die letzte Zahl (0.25) – 0 = kein Schleier, 1 = ganz weiß */
+/* Sanfter dunkler Verlauf am unteren Rand: Dort steht der weiße Titel
+   und ist auf jedem Foto gut lesbar. Das Foto bleibt oben unverändert.
+   Stärke einstellen: die Zahl 0.55 – 0 = kein Verlauf, 1 = ganz dunkel */
 .kachel::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(251, 250, 243, 0.25);  /* Papierfarbe, leicht durchsichtig */
+  background: linear-gradient(to top, rgba(40, 34, 31, 0.55) 0%, rgba(40, 34, 31, 0) 50%);
   transition: opacity 0.3s ease;
 }
 
-/* Titel mittig auf der Kachel, als freistehender Text.
-   Der weiche helle Schimmer (text-shadow) sorgt dafür, dass die Schrift
-   auch auf unruhigen oder dunklen Fotos lesbar bleibt. */
+/* Titel unten links (wie in der PowerPoint), weiß */
 .kachel-titel {
   position: absolute;
-  z-index: 1;                    /* liegt über dem Schleier */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);  /* genau in die Mitte rücken */
-  width: max-content;
-  max-width: calc(100% - 1rem);  /* nie breiter als die Kachel, langer Titel bricht um */
+  z-index: 1;                    /* liegt über dem Verlauf */
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 0.75rem;
+  color: var(--farbe-papier);
   font-size: 1.0625rem;
   font-weight: 600;
-  line-height: 1.25;
-  text-align: center;
-  text-shadow:
-    0 0 0.5rem rgba(251, 250, 243, 0.95),
-    0 0 1.25rem rgba(251, 250, 243, 0.8);
+  line-height: 1.2;
+  text-shadow: 0 1px 0.5rem rgba(40, 34, 31, 0.35);
 }
 
 /* Kachel "Danke": Fläche in Atelierrot, ohne Schleier */
@@ -840,23 +884,28 @@ main {
   display: none;
 }
 
-/* Auf Rot: helle Schrift ohne Schimmer */
+/* Auf Rot: kein Schatten nötig */
 .kachel-danke .kachel-titel {
-  color: var(--farbe-papier);
   text-shadow: none;
 }
 
-/* Beim Darüberfahren (nur bei Links): Schleier weg, Foto zoomt leicht, Titel wird rot */
-a.kachel:hover::after {
-  opacity: 0;
+.kachel-danke a.kachel:hover {
+  background-color: var(--farbe-atelierrot-dunkel);
 }
 
+/* Beim Darüberfahren: Foto zoomt leicht, Titel bekommt einen kleinen Pfeil */
 a.kachel:hover img {
   transform: scale(1.04);
 }
 
-a.kachel:hover .kachel-titel {
-  color: var(--farbe-atelierrot);
+a.kachel .kachel-titel::after {
+  content: " →";
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+a.kachel:hover .kachel-titel::after {
+  opacity: 1;
 }
 
 /* Ab Tablet-Breite: Anordnung wie in der Skizze */
@@ -876,6 +925,8 @@ a.kachel:hover .kachel-titel {
   }
 
   .kachel-titel {
+    left: 1.25rem;
+    bottom: 1rem;
     font-size: 1.375rem;
   }
 }
@@ -921,7 +972,7 @@ a.kachel:hover .kachel-titel {
   }
 
   .slideshow-steuerung {
-    padding-inline: 0;
+    right: 0;
   }
 
   .start-text {
@@ -938,14 +989,56 @@ a.kachel:hover .kachel-titel {
    9. Adventsaktion-Seite
    -------------------------------------------------------------------------- */
 
-/* Erklärung oben: nicht zu breit, damit die Zeilen gut lesbar bleiben */
+/* Oberer Teil. Am Handy untereinander: Titel, Foto, Ablauf.
+   Am Laptop zweispaltig: links Titel und Ablauf, rechts das Foto. */
 .aktion-intro {
-  max-width: 42rem;
-  margin-bottom: 3rem;
+  display: grid;
+  grid-template-areas:
+    "kopf"
+    "foto"
+    "ablauf";
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 
-.aktion-intro h2 {
-  margin-top: 2rem;
+.aktion-kopf   { grid-area: kopf; }
+.aktion-foto   { grid-area: foto; }
+.aktion-ablauf { grid-area: ablauf; max-width: 42rem; }
+
+.aktion-kopf h1 {
+  margin-bottom: 0;
+}
+
+.aktion-foto {
+  margin: 0;
+}
+
+.aktion-foto img {
+  width: 100%;
+  max-width: 24rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background-color: var(--farbe-flaeche);
+}
+
+.aktion-ablauf .partner-logo {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 60rem) {
+  .aktion-intro {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      "kopf   foto"
+      "ablauf foto";
+    grid-template-rows: auto 1fr;
+    column-gap: 4rem;
+    row-gap: 2rem;
+  }
+
+  .aktion-foto img {
+    max-width: none;
+  }
 }
 
 /* Die drei Schritte mit roten Nummern in Fira Code */
@@ -956,18 +1049,21 @@ a.kachel:hover .kachel-titel {
   padding: 0;
 }
 
+/* Jeder Schritt als ruhige Karte mit feinem Rahmen */
 .aktion-schritte li {
   counter-increment: schritt;
   position: relative;
-  padding-left: 2.75rem;
-  margin-bottom: 0.9rem;
+  padding: 1.1rem 1.25rem 1.1rem 3.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--farbe-linie);
+  border-radius: 3px;
 }
 
 .aktion-schritte li::before {
   content: counter(schritt, decimal-leading-zero);  /* 01, 02, 03 */
   position: absolute;
-  left: 0;
-  top: 0.05em;
+  left: 1.25rem;
+  top: 1.15rem;
   font-family: var(--schrift-akzent);
   font-weight: 500;
   color: var(--farbe-atelierrot);
@@ -984,18 +1080,20 @@ a.kachel:hover .kachel-titel {
   margin-top: 0;
 }
 
-/* Foto der Dackel-Kerzenhalter */
-.aktion-foto {
-  width: 12rem;
-  background-color: var(--farbe-flaeche);
+/* Schlusssatz als großes Zitat zwischen zwei feinen Linien */
+.aktion-schluss {
+  margin: 4rem 0;
+  padding: 2.5rem 0;
+  border-block: 1px solid var(--farbe-linie);
+  text-align: center;
 }
 
-/* Schlusssatz: etwas größer und in Atelierrot */
-.aktion-schluss {
-  max-width: 42rem;
-  margin: 3rem 0 4rem;
-  font-size: 1.25rem;
-  line-height: 1.45;
+.aktion-schluss p {
+  max-width: 44rem;
+  margin: 0 auto;
+  font-size: clamp(1.375rem, 3.2vw, 1.875rem);
+  font-weight: 300;
+  line-height: 1.35;
   color: var(--farbe-atelierrot);
 }
 
@@ -1355,6 +1453,11 @@ html.lightbox-offen {
   max-width: 26rem;              /* am Handy nicht riesig */
 }
 
+/* Das Frühwerk kleiner als das Porträt */
+.ueber-mich-foto-klein {
+  max-width: 15rem;
+}
+
 /* Bildunterschrift, z. B. "Frühwerk, entstanden bei Berta Schmid, 1982" */
 .ueber-mich-foto figcaption {
   margin-top: 0.5rem;
@@ -1381,6 +1484,12 @@ html.lightbox-offen {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: 4rem;
     align-items: start;
+  }
+
+  /* Der Text bleibt beim Scrollen stehen, während die Fotos vorbeiziehen */
+  .ueber-mich-text {
+    position: sticky;
+    top: 2rem;
   }
 }
 
@@ -1438,6 +1547,12 @@ html.lightbox-offen {
   align-items: center;
 }
 
+/* Feine Trennlinie zwischen den Einträgen */
+.danke-eintrag + .danke-eintrag {
+  padding-top: 2rem;
+  border-top: 1px solid var(--farbe-linie);
+}
+
 .danke-eintrag p {
   margin: 0;
 }
@@ -1446,15 +1561,28 @@ html.lightbox-offen {
   font-weight: 600;
 }
 
-/* Logos nicht größer als nötig */
-.danke-logo {
-  max-height: 3.5rem;
-  width: auto;
+/* Alle Bilder gleich groß: Foto füllt die Fläche, Logos passen hinein */
+.danke-eintrag img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.danke-eintrag .danke-logo {
+  object-fit: contain;
+  padding: 0.5rem;
+  mix-blend-mode: multiply;      /* weißer Logo-Hintergrund verschmilzt mit dem Papier */
 }
 
 .danke-atelier {
   margin: 0;
   max-width: 48rem;
+}
+
+.danke-atelier figcaption {
+  margin-top: 0.5rem;
+  font-family: var(--schrift-akzent);
+  font-size: 0.8125rem;
 }
 
 @media (min-width: 48rem) {
@@ -1493,4 +1621,42 @@ html.lightbox-offen {
   margin-top: 2.5rem;
   font-family: var(--schrift-akzent);
   font-size: 0.8125rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   14. Sanftes Einblenden beim Scrollen
+   Kacheln, Galeriebilder usw. gleiten leicht von unten herein, sobald sie
+   ins Bild kommen. Reines CSS ("animation-timeline: view()"), kein JavaScript.
+   - Browser, die das nicht können, zeigen alles einfach sofort an.
+   - Wer am Gerät "Bewegung reduzieren" eingestellt hat, sieht keine Bewegung.
+   Zum Abschalten: diesen ganzen Abschnitt löschen.
+   -------------------------------------------------------------------------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .kachel-raster > li,
+    .galerie-raster > li,
+    .losnummern-raster,
+    .aktion-schritte > li,
+    .aktion-schluss,
+    .kerzenhalter-raster > li,
+    .danke-atelier {
+      /* Blöcke mit Logos absichtlich nicht dabei: Das Einblenden würde
+         verhindern, dass der weiße Logo-Hintergrund mit dem Papier verschmilzt */
+      animation: einblenden linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+@keyframes einblenden {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
