@@ -53,11 +53,22 @@ function setzeVerhaeltnis(listenpunkt, verhaeltnis) {
    3. Wäre eine Reihe dadurch sehr hoch (z. B. ein einzelnes Bild), wird sie
       auf das 2,5-Fache der Grundhöhe begrenzt – dann ist sie nicht ganz
       breit, aber kein Bild wird riesig.
+   4. Sonderfall "grossLinks: true" (in js/galerie-daten.js): Das erste Bild
+      steht links groß über die ganze Höhe, die übrigen Bilder in Reihen
+      rechts daneben (bei "reihen" zählen dann nur diese übrigen Bilder).
+      Das gilt ab Tablet-Breite; am Handy wäre das große Bild zu schmal,
+      dort wird ganz normal in Reihen aufgeteilt.
    -------------------------------------------------------------------------- */
 const MAX_REIHENHOEHE_FAKTOR = 2.5;
 
-function ordneReihenAn(raster, vorgabe, immer) {
-  const breite = raster.clientWidth;
+// Ab welcher Breite das große Bild links steht (wie im CSS: 48rem = Tablet)
+const GROSS_LINKS_AB = window.matchMedia("(min-width: 48rem)");
+
+function ordneReihenAn(raster, werkreihe, immer) {
+  // Feld-Hängung: Die Anordnung macht hier das CSS (Raster), nichts zu rechnen
+  if (werkreihe.feld) return;
+
+  const breite = raster.clientWidth;   // ganze Breite (inkl. Innenabstand links)
   if (breite === 0) return;
   // Nur neu rechnen, wenn sich die Breite wirklich geändert hat
   if (!immer && raster.dataset.letzteBreite === String(breite)) return;
@@ -69,21 +80,71 @@ function ordneReihenAn(raster, vorgabe, immer) {
   const fuge = parseFloat(stil.columnGap) || 0;
   const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
   const grundhoehe = parseFloat(stil.getPropertyValue("--reihenhoehe")) * rem;
-  const maxHoehe = grundhoehe * MAX_REIHENHOEHE_FAKTOR;
 
   const punkte = Array.from(raster.children);
   const verhaeltnisse = punkte.map(function (li) { return Number(li.dataset.verhaeltnis) || 1; });
+  const vorgabe = werkreihe.reihen;
 
-  // 1. Anzahl Bilder pro Reihe
-  let proReihe;
-  const summeVorgabe = (vorgabe || []).reduce(function (a, b) { return a + b; }, 0);
-  if (vorgabe && summeVorgabe === punkte.length) {
-    proReihe = vorgabe;
-  } else {
-    proReihe = teileAuf(verhaeltnisse, breite, grundhoehe, fuge);
+  // Erst alles vom großen Bild links zurücksetzen (z. B. nach Handy-Drehen)
+  raster.style.paddingLeft = "";
+  const erstes = punkte[0];
+  ["position", "left", "top", "width", "height"].forEach(function (eigenschaft) {
+    erstes.style[eigenschaft] = "";
+  });
+
+  // ---- Sonderfall: großes Bild links ----
+  if (werkreihe.grossLinks && GROSS_LINKS_AB.matches && punkte.length > 2) {
+    const restPunkte = punkte.slice(1);
+    const restVerh = verhaeltnisse.slice(1);
+    const v0 = verhaeltnisse[0];
+
+    // Reihen rechts festlegen (Vorgabe oder automatisch, grob geschätzt
+    // mit etwa 70 % der Breite für die rechte Seite)
+    const summeVorgabe = (vorgabe || []).reduce(function (a, b) { return a + b; }, 0);
+    const proReihe = (vorgabe && summeVorgabe === restPunkte.length)
+      ? vorgabe
+      : teileAuf(restVerh, breite * 0.7, grundhoehe, fuge);
+
+    // Rechnen: Wie breit muss die rechte Seite (R) sein, damit das große
+    // Bild links genau so hoch ist wie alle Reihen rechts zusammen?
+    // Höhe einer Reihe = (R - Fugen) ÷ Summe der Verhältnisse
+    // → Gesamthöhe rechts = a·R + b, Breite links = v0 · Gesamthöhe,
+    //   und links + Fuge + rechts = ganze Breite.
+    let a = 0, b = fuge * (proReihe.length - 1), i = 0;
+    proReihe.forEach(function (anzahl) {
+      const summe = restVerh.slice(i, i + anzahl).reduce(function (x, y) { return x + y; }, 0);
+      a += 1 / summe;
+      b -= fuge * (anzahl - 1) / summe;
+      i += anzahl;
+    });
+    const rechts = (breite - fuge - v0 * b) / (1 + v0 * a);
+    const hoeheGesamt = a * rechts + b;
+    const links = v0 * hoeheGesamt;
+
+    // Großes Bild links fest platzieren, rechts davon Platz lassen
+    raster.style.paddingLeft = (links + fuge) + "px";
+    erstes.style.position = "absolute";
+    erstes.style.left = "0";
+    erstes.style.top = "0";
+    erstes.style.width = links + "px";
+    erstes.style.height = hoeheGesamt + "px";
+    erstes.style.flex = "";
+    erstes.style.marginRight = "";
+
+    setzeReihen(restPunkte, restVerh, proReihe, breite - links - fuge, fuge, Infinity);
+    return;
   }
 
-  // 2. + 3. Breiten setzen, Reihe für Reihe
+  // ---- Normalfall: alle Bilder in Reihen ----
+  const summeVorgabe = (vorgabe || []).reduce(function (x, y) { return x + y; }, 0);
+  const proReihe = (vorgabe && summeVorgabe === punkte.length)
+    ? vorgabe
+    : teileAuf(verhaeltnisse, breite, grundhoehe, fuge);
+  setzeReihen(punkte, verhaeltnisse, proReihe, breite, fuge, grundhoehe * MAX_REIHENHOEHE_FAKTOR);
+}
+
+// Breiten setzen, Reihe für Reihe (Schritte 2 und 3 oben)
+function setzeReihen(punkte, verhaeltnisse, proReihe, breite, fuge, maxHoehe) {
   let i = 0;
   proReihe.forEach(function (anzahl) {
     const reihe = verhaeltnisse.slice(i, i + anzahl);
@@ -206,6 +267,11 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
 
     const raster = document.createElement("ul");
     raster.className = "galerie-raster";
+    // Feld-Hängung (feld: true): gleichmäßiges Raster, große Bilder über 2×2 Felder
+    if (werkreihe.feld) {
+      raster.classList.add("galerie-feld");
+    }
+    let grosseBilder = 0;   // zählt die großen Bilder (gross-1, gross-2, …)
 
     werkreihe.bilder.forEach(function (eintrag, index) {
       const listenpunkt = document.createElement("li");
@@ -234,7 +300,7 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
         setzeVerhaeltnis(listenpunkt, 1);
         bild.addEventListener("load", function () {
           setzeVerhaeltnis(listenpunkt, bild.naturalWidth / bild.naturalHeight);
-          ordneReihenAn(raster, werkreihe.reihen, true);
+          ordneReihenAn(raster, werkreihe, true);
         });
       }
 
@@ -245,19 +311,49 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
         oeffneLightbox(lightboxBilder, index, knopf);
       });
 
+      // Großes Bild in der Feld-Hängung: Klassen für die Position im CSS
+      if (werkreihe.feld && eintrag.gross) {
+        grosseBilder += 1;
+        listenpunkt.classList.add("gross", "gross-" + grosseBilder);
+      }
+
       listenpunkt.appendChild(knopf);
       raster.appendChild(listenpunkt);
     });
 
     abschnitt.appendChild(raster);
-    galerieBereich.appendChild(abschnitt);
+
+    // Neben der vorigen Werkreihe anzeigen? (nebenVoriger: true in den Daten)
+    // Dann kommen beide in einen gemeinsamen Kasten "werkreihen-paar", der
+    // sie ab Tablet-Breite nebeneinander stellt (siehe css/style.css).
+    const vorige = galerieBereich.lastElementChild;
+    if (werkreihe.nebenVoriger && vorige) {
+      let paar = vorige;
+      if (!vorige.classList.contains("werkreihen-paar")) {
+        paar = document.createElement("div");
+        paar.className = "werkreihen-paar";
+        galerieBereich.replaceChild(paar, vorige);
+        paar.appendChild(vorige);
+      }
+      paar.appendChild(abschnitt);
+    } else {
+      galerieBereich.appendChild(abschnitt);
+    }
+
+    // Anteil an der Breite, falls die Werkreihe neben einer anderen steht:
+    // die Summe der Seitenverhältnisse ihrer Bilder. So werden die Bilder
+    // in beiden Werkreihen gleich hoch.
+    const anteil = werkreihe.bilder.reduce(function (summe, eintrag) {
+      return summe + (eintrag.breite && eintrag.hoehe ? eintrag.breite / eintrag.hoehe : 1);
+    }, 0);
+    abschnitt.style.setProperty("--anteil", anteil);
 
     // Bilder in Reihen anordnen – und neu, sobald sich die Breite ändert
     // (Handy drehen, Fenster größer/kleiner ziehen)
-    ordneReihenAn(raster, werkreihe.reihen, true);
+    ordneReihenAn(raster, werkreihe, true);
     if ("ResizeObserver" in window) {
       new ResizeObserver(function () {
-        ordneReihenAn(raster, werkreihe.reihen, false);
+        ordneReihenAn(raster, werkreihe, false);
       }).observe(raster);
     }
   });

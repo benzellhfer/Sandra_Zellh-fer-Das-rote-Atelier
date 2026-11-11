@@ -911,6 +911,10 @@ main {
   transition: transform 0.4s ease;
 }
 
+/* Hinweis: Die Fotos von Standhaft und Tierisch hell sind seitlich
+   verbreitert (der graue Hintergrund ist fortgesetzt), damit Esel bzw.
+   Elefant mit Kerze ganz in die Kachel passen. */
+
 /* Sanfter dunkler Verlauf am unteren Rand: Dort steht der weiße Titel
    und ist auf jedem Foto gut lesbar. Das Foto bleibt oben unverändert.
    Stärke einstellen: die Zahl 0.55 – 0 = kein Verlauf, 1 = ganz dunkel */
@@ -1424,6 +1428,23 @@ html.lightbox-offen {
   max-width: 42rem;
 }
 
+/* Zwei Werkreihen nebeneinander (in js/galerie-daten.js: nebenVoriger: true).
+   Am Handy stehen sie untereinander wie alle anderen, ab Tablet-Breite
+   nebeneinander. Die Breite richtet sich nach --anteil (setzt js/galerie.js),
+   damit die Bilder auf beiden Seiten gleich hoch sind. */
+@media (min-width: 48rem) {
+  .werkreihen-paar {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .werkreihen-paar > .werkreihe {
+    flex: var(--anteil, 1) 1 0;
+    min-width: 0;
+  }
+}
+
 /* "Petersburger Hängung": Bilder hängen dicht an dicht in Reihen.
    - Alle Bilder einer Reihe sind gleich hoch, jedes behält sein Format
      (Querformat = breit, Hochformat = schmal), nichts wird abgeschnitten.
@@ -1438,6 +1459,7 @@ html.lightbox-offen {
 .galerie-raster {
   --reihenhoehe: 5.5rem;         /* Grundhöhe einer Reihe am Handy */
   --fuge: 0.375rem;              /* Abstand zwischen den Bildern */
+  position: relative;            /* für das große Bild links (grossLinks, js/galerie.js) */
   display: flex;
   flex-wrap: wrap;
   gap: var(--fuge);
@@ -1472,6 +1494,74 @@ html.lightbox-offen {
 
 .galerie-knopf:hover img {
   opacity: 0.85;
+}
+
+/* --- Feld-Hängung (Werkreihe mit feld: true, z. B. Tierisch hell) ---
+   Alle Bilder liegen in einem gleichmäßigen Raster aus Hochformat-Feldern.
+   Die großen Bilder (gross-1, gross-2, gross-3 = Reihenfolge in
+   js/galerie-daten.js) belegen je 2 × 2 Felder; die kleinen füllen
+   automatisch die Lücken ("dense"). Mit 3 großen + 15 kleinen Bildern
+   geht der Block genau auf.
+
+   Handy (3 Spalten, 9 Reihen):      Ab Tablet (9 Spalten, 3 Reihen):
+     G1 G1 .                           G1 G1 .  .  .  .  G3 G3 .
+     G1 G1 .                           G1 G1 .  G2 G2 .  G3 G3 .
+     .  .  .                           .  .  .  G2 G2 .  .  .  .
+     .  G2 G2
+     .  G2 G2
+     .  .  .
+     G3 G3 .
+     G3 G3 .
+     .  .  .                                                          */
+.galerie-feld {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
+}
+
+.galerie-feld li {
+  aspect-ratio: 2 / 3;           /* jedes Feld hat Hochformat */
+}
+
+/* Bild füllt sein Feld ganz aus */
+.galerie-feld .galerie-knopf,
+.galerie-feld .galerie-knopf img {
+  height: 100%;
+}
+
+.galerie-feld .galerie-knopf img {
+  aspect-ratio: auto;
+}
+
+/* Große Bilder: 2 Spalten breit, 2 Reihen hoch (Höhe ergibt sich aus den Reihen) */
+.galerie-feld li.gross {
+  aspect-ratio: auto;
+  position: relative;
+}
+
+/* Das große Bild legt sich genau über seine 2 × 2 Felder, ohne die Reihen
+   selbst höher zu drücken (sonst stünde es ein paar Pixel über) */
+.galerie-feld li.gross .galerie-knopf {
+  position: absolute;
+  inset: 0;
+}
+
+.galerie-feld li.gross img {
+  object-fit: cover;
+}
+
+.galerie-feld .gross-1 { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+.galerie-feld .gross-2 { grid-column: 2 / span 2; grid-row: 4 / span 2; }
+.galerie-feld .gross-3 { grid-column: 1 / span 2; grid-row: 7 / span 2; }
+
+@media (min-width: 48rem) {
+  .galerie-feld {
+    grid-template-columns: repeat(9, 1fr);
+  }
+
+  .galerie-feld .gross-1 { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+  .galerie-feld .gross-2 { grid-column: 4 / span 2; grid-row: 2 / span 2; }
+  .galerie-feld .gross-3 { grid-column: 7 / span 2; grid-row: 1 / span 2; }
 }
 
 /* Tablet: etwas höhere Reihen */
