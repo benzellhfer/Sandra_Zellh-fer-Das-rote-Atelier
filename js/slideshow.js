@@ -11,6 +11,7 @@
      Mit dem Knopf "Abspielen" läuft sie wieder an.
    - Wischen am Handy übernimmt der Browser selbst (horizontales Scrollen
      mit Einrasten, siehe CSS) – das fühlt sich besonders natürlich an.
+   - Klick bzw. Antippen auf ein Bild öffnet es groß (Lightbox, js/lightbox.js).
    ========================================================================== */
 
 // ---- Einstellung: Zeit pro Bild in Millisekunden (4000 = 4 Sekunden) ----
@@ -37,6 +38,17 @@ if (slideshow && typeof KERZENHALTER !== "undefined") {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     gestoppt = true;
   }
+
+
+  // Die Liste so umbauen, wie die Lightbox sie braucht (für die Großansicht)
+  const slideshowBilder = KERZENHALTER.map(function (kerzenhalter) {
+    return {
+      bild: kerzenhalter.bild,
+      alt: "Kerzenhalter Nr. " + kerzenhalter.nummer,
+      titel: "Nr. " + kerzenhalter.nummer,
+      text: kerzenhalter.beschreibung
+    };
+  });
 
 
   // ---- 1. Bilder und Nummern-Knöpfe aus der Datenliste erzeugen ----
@@ -73,7 +85,22 @@ if (slideshow && typeof KERZENHALTER !== "undefined") {
       beschriftung.appendChild(text);
     }
 
-    dia.appendChild(bild);
+    // Das Bild steckt in einem Knopf: Klick/Antippen öffnet es groß.
+    // (Ein Knopf ist auch mit der Tastatur bedienbar.)
+    // Beim Wischen löst der Browser keinen Klick aus, Wischen bleibt also Wischen.
+    const bildKnopf = document.createElement("button");
+    bildKnopf.type = "button";
+    bildKnopf.className = "dia-knopf";
+    bildKnopf.setAttribute("aria-label", "Kerzenhalter Nr. " + kerzenhalter.nummer + " groß anzeigen");
+    bildKnopf.appendChild(bild);
+    bildKnopf.addEventListener("click", function () {
+      stoppen();   // Slideshow anhalten, damit sie nach dem Schließen nicht weggelaufen ist
+      if (typeof oeffneLightbox === "function") {
+        oeffneLightbox(slideshowBilder, index, bildKnopf);
+      }
+    });
+
+    dia.appendChild(bildKnopf);
     dia.appendChild(beschriftung);
     spur.appendChild(dia);
 

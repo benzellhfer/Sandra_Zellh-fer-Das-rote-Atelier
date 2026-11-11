@@ -574,6 +574,21 @@ main {
   object-fit: contain;           /* ganzes Werk sichtbar, nichts abgeschnitten */
 }
 
+/* Knopf um das Bild: Klick öffnet die Großansicht.
+   Alle Knopf-Standards (Rahmen, Hintergrund, Abstand) entfernen. */
+.dia-knopf {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;               /* Lupe als Mauszeiger: "zum Vergrößern klicken" */
+}
+
+.dia-knopf img {
+  display: block;
+}
+
 /* "Nr. 07" und Beschreibung direkt unter dem Bild (verdeckt das Werk nicht) */
 .dia-beschriftung {
   margin: 0;
