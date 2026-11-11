@@ -14,8 +14,12 @@
    - Klick bzw. Antippen auf ein Bild öffnet es groß (Lightbox, js/lightbox.js).
    ========================================================================== */
 
-// ---- Einstellung: Zeit pro Bild in Millisekunden (4000 = 4 Sekunden) ----
-const ZEIT_PRO_BILD = 4000;
+// ---- Einstellung: Zeit pro Bild in Millisekunden (2000 = 2 Sekunden) ----
+const ZEIT_PRO_BILD = 2000;
+
+// ---- Einstellung: Wie lange ein Bild zum Hereingleiten braucht (in Millisekunden) ----
+// Größere Zahl = langsamer. Sollte deutlich kleiner sein als ZEIT_PRO_BILD.
+const GLEITDAUER = 1000;
 
 
 const slideshow = document.querySelector(".slideshow");
@@ -130,11 +134,58 @@ if (slideshow && typeof KERZENHALTER !== "undefined") {
     // Bei mehr als einem Bild Abstand springen wir direkt (ohne lange Fahrt
     // über viele Bilder), sonst gleiten wir weich hinüber
     const weich = Math.abs(index - aktuell) === 1;
-    spur.scrollTo({
-      left: index * spur.clientWidth,
-      behavior: weich ? "smooth" : "auto"
-    });
+    const ziel = index * spur.clientWidth;
+    if (weich) {
+      gleiteZu(ziel);
+    } else {
+      gleitenAbbrechen();
+      spur.scrollTo({ left: ziel, behavior: "auto" });
+    }
     markiere(index);
+  }
+
+  // Eigene, langsame Gleitbewegung zum Ziel.
+  // (Das eingebaute "smooth" des Browsers ist recht schnell und lässt sich
+  // nicht einstellen – deshalb bewegen wir die Spur hier selbst, Bild für Bild
+  // der Bildschirm-Aktualisierung, über GLEITDAUER Millisekunden.)
+  let gleitAnimation = null;   // Nummer der laufenden Animation (zum Abbrechen)
+
+  function gleiteZu(ziel) {
+    gleitenAbbrechen();
+    const start = spur.scrollLeft;
+    const strecke = ziel - start;
+    const startZeit = performance.now();
+
+    // Das Einrasten (scroll-snap) während der Fahrt ausschalten,
+    // sonst "springt" Safari bei jedem Schritt zurück
+    spur.style.scrollSnapType = "none";
+
+    function schritt(jetzt) {
+      // Fortschritt von 0 (Anfang) bis 1 (Ziel erreicht)
+      const fortschritt = Math.min((jetzt - startZeit) / GLEITDAUER, 1);
+      // Sanft anfahren und sanft abbremsen ("ease-in-out")
+      const weichheit = fortschritt < 0.5
+        ? 2 * fortschritt * fortschritt
+        : 1 - Math.pow(-2 * fortschritt + 2, 2) / 2;
+      spur.scrollLeft = start + strecke * weichheit;
+
+      if (fortschritt < 1) {
+        gleitAnimation = requestAnimationFrame(schritt);
+      } else {
+        gleitAnimation = null;
+        spur.style.scrollSnapType = "";   // Einrasten wieder einschalten (Wert aus dem CSS)
+      }
+    }
+    gleitAnimation = requestAnimationFrame(schritt);
+  }
+
+  // Eine laufende Gleitbewegung sofort beenden (z. B. wenn jemand wischt)
+  function gleitenAbbrechen() {
+    if (gleitAnimation !== null) {
+      cancelAnimationFrame(gleitAnimation);
+      gleitAnimation = null;
+      spur.style.scrollSnapType = "";
+    }
   }
 
   // Den passenden Nummern-Knopf hervorheben
@@ -206,6 +257,7 @@ if (slideshow && typeof KERZENHALTER !== "undefined") {
   // Dauerhaft anhalten (nach Berührung oder Bedienung)
   function stoppen() {
     gestoppt = true;
+    gleitenAbbrechen();   // eine gerade laufende Fahrt nicht gegen den Finger weiterlaufen lassen
     aktualisierePauseKnopf();
   }
 

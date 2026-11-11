@@ -30,6 +30,13 @@
               Anordnung beim Laden kurz springen.
 
    Die Reihenfolge hier ist die Reihenfolge auf der Seite.
+
+   Reihen (optional, pro Werkreihe): Normalerweise verteilt die Seite die
+   Bilder selbst auf volle Reihen. Willst du es fest vorgeben, schreibe z. B.
+       reihen: [3, 2],
+   = die ersten 3 Bilder in Reihe 1, die nächsten 2 in Reihe 2. Die Zahlen
+   müssen zusammen genau die Anzahl der Bilder ergeben, sonst wird
+   automatisch verteilt. Feste Reihen gelten auch am Handy.
    Neues Bild hinzufügen: eine Zeile { bild: …, titel: …, breite: …, hoehe: … }
    kopieren, Pfad und Maße ändern.
    Neue Werkreihe: einen ganzen { reihe: … } Block kopieren.
@@ -160,17 +167,24 @@ const GALERIEN = {
     {
       reihe: "Abstrakt – Schichten in Acryl und Wachs",
       text: "Schicht für Schicht entstehen Kontraste im Dialog. Serie auf Karton.",
+      // Feste Reihen: die ersten 3 Bilder in Reihe 1, die nächsten 2 in Reihe 2
+      reihen: [3, 2],
       bilder: [
-        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/dreiergruppe.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        // Reihe 1
         { bild: "bilder/malerei/schichten-in-acryl-und-wachs/dreier-1.jpg", titel: "", breite: 1536, hoehe: 1024 },
         { bild: "bilder/malerei/schichten-in-acryl-und-wachs/dreier-2.jpg", titel: "", breite: 1536, hoehe: 1024 },
         { bild: "bilder/malerei/schichten-in-acryl-und-wachs/dreier-3.jpg", titel: "", breite: 1536, hoehe: 1024 },
-        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/bunt-paar.jpg", titel: "", breite: 1536, hoehe: 1024 },
-        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/bunt-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/bunt-2.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        // Reihe 2
         { bild: "bilder/malerei/schichten-in-acryl-und-wachs/gelb-schwarz-paar.jpg", titel: "", breite: 1536, hoehe: 1024 },
-        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/gelb.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/schwarz.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/malerei/schichten-in-acryl-und-wachs/bunt-paar.jpg", titel: "", breite: 1536, hoehe: 1024 },
+
+        // Zurzeit nicht gezeigt. Zum Wiederanzeigen: die beiden "//" am
+        // Zeilenanfang löschen UND die Zahlen bei reihen: oben anpassen.
+        // { bild: "bilder/malerei/schichten-in-acryl-und-wachs/dreiergruppe.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        // { bild: "bilder/malerei/schichten-in-acryl-und-wachs/bunt-1.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        // { bild: "bilder/malerei/schichten-in-acryl-und-wachs/bunt-2.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        // { bild: "bilder/malerei/schichten-in-acryl-und-wachs/gelb.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        // { bild: "bilder/malerei/schichten-in-acryl-und-wachs/schwarz.jpg", titel: "", breite: 1536, hoehe: 1024 },
       ]
     },
     {

@@ -1429,11 +1429,12 @@ html.lightbox-offen {
      (Querformat = breit, Hochformat = schmal), nichts wird abgeschnitten.
    - Jede Reihe füllt die ganze Breite, dazwischen nur eine schmale Fuge.
 
-   So funktioniert's: js/galerie.js gibt jedem Bild sein Seitenverhältnis
-   als "--verhaeltnis" mit (z. B. 1.5 bei einem Querformat 3:2).
-   Daraus ergibt sich seine Grundbreite (Verhältnis × Reihenhöhe). Passen
-   die Bilder nicht genau in eine Reihe, wachsen alle im gleichen Verhältnis
-   mit, bis die Reihe voll ist – dadurch bleiben sie gleich hoch. */
+   - Jede Werkreihe ist ein geschlossener Block: keine angefangene letzte Reihe.
+
+   So funktioniert's: js/galerie.js (Funktion ordneReihenAn) teilt die Bilder
+   auf Reihen auf und gibt jedem Bild seine Breite. --reihenhoehe ist dabei
+   die Grundhöhe, nach der sich richtet, wie viele Reihen es werden
+   (größer = weniger Bilder pro Reihe, größere Bilder). */
 .galerie-raster {
   --reihenhoehe: 5.5rem;         /* Grundhöhe einer Reihe am Handy */
   --fuge: 0.375rem;              /* Abstand zwischen den Bildern */
@@ -1447,16 +1448,8 @@ html.lightbox-offen {
 
 .galerie-raster li {
   --verhaeltnis: 1;              /* Standard, falls (noch) unbekannt */
-  flex-grow: var(--verhaeltnis);
-  flex-basis: calc(var(--verhaeltnis) * var(--reihenhoehe));
-}
-
-/* Unsichtbarer Platzhalter am Ende: Die letzte, nicht ganz volle Reihe
-   wächst nur ein Stück mit (füllt die Lücke teilweise), statt einzelne
-   Bilder riesig aufzuziehen. Größere Zahl = mehr Lücke, kleinere = größere Bilder. */
-.galerie-raster::after {
-  content: "";
-  flex-grow: 5;
+  min-width: 0;                  /* darf schmaler werden als das Bild selbst */
+  /* Breite (flex) setzt js/galerie.js für jedes Bild einzeln */
 }
 
 .galerie-knopf {
