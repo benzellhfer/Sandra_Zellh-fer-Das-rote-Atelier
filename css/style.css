@@ -53,10 +53,14 @@
   /* Farben */
   --farbe-atelierrot: #A62316;   /* Akzente, Links, Nummern, hervorgehobene Elemente */
   --farbe-anthrazit: #4A4340;    /* Text und Navigation */
-  --farbe-papier: #FBFAF3;       /* Seitenhintergrund */
+  --farbe-papier: #FBFAF3;       /* helles Papierweiß, z. B. für Schrift auf Rot */
   --farbe-formularfeld: #FFFFFF; /* nur für Ausnahmen wie Eingabefelder */
-  --farbe-linie: #E6E1D6;        /* feine Trennlinien (leicht dunkler als Papier) */
-  --farbe-flaeche: #EDE7DC;      /* warmes Beige hinter Bildern und für Kacheln */
+  --farbe-linie: #D9D0C1;        /* feine Trennlinien (etwas dunkler als der Hintergrund) */
+  --farbe-flaeche: #EDE7DC;      /* warmes Creme hinter Bildern und für Kacheln */
+  /* Seitenhintergrund: gleiches Creme wie hinter den Bildern, damit die Fotos
+     ohne sichtbaren Rand mit der Seite verschmelzen.
+     Zurück zum hellen Papier: hier var(--farbe-papier) eintragen. */
+  --farbe-hintergrund: var(--farbe-flaeche);
   --farbe-atelierrot-dunkel: #85190F; /* Atelierrot beim Darüberfahren mit der Maus */
 
   /* Schriften */
@@ -100,7 +104,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--farbe-papier);
+  background-color: var(--farbe-hintergrund);
   color: var(--farbe-anthrazit);
   font-family: var(--schrift-text);
   font-size: 1.0625rem;          /* ca. 17px – gut lesbar am Handy */
@@ -187,7 +191,7 @@ img {
 .seitenkopf {
   position: relative;            /* damit das aufgeklappte Handy-Menü sich daran ausrichtet */
   z-index: 10;
-  background-color: var(--farbe-papier);
+  background-color: var(--farbe-hintergrund);
   border-bottom: 1px solid var(--farbe-linie);
 }
 
@@ -330,7 +334,7 @@ img {
   top: 100%;
   left: 0;
   right: 0;
-  background-color: var(--farbe-papier);
+  background-color: var(--farbe-hintergrund);
   border-bottom: 1px solid var(--farbe-linie);
   box-shadow: 0 0.5rem 1rem rgba(74, 67, 64, 0.08);
 }
@@ -564,7 +568,8 @@ main {
 
 .dia img {
   width: 100%;
-  background-color: var(--farbe-flaeche); /* Beige neben Fotos, die nicht quadratisch sind */
+  /* Kein farbiger Hintergrund: bei nicht quadratischen Fotos sieht man
+     daneben einfach das Papier, also nur das Bild selbst, ohne Rand */
   aspect-ratio: 1 / 1;           /* quadratisch */
   object-fit: contain;           /* ganzes Werk sichtbar, nichts abgeschnitten */
 }
@@ -579,7 +584,7 @@ main {
   gap: 0 0.9rem;
   min-height: 3.25rem;           /* gleiche Höhe wie der Pause-Knopf daneben */
   padding-right: 7rem;           /* rechts Platz für den Pause-Knopf lassen */
-  background-color: var(--farbe-papier);
+  background-color: var(--farbe-hintergrund);
   line-height: 1.3;
 }
 
@@ -626,12 +631,21 @@ main {
   stroke-linejoin: round;
 }
 
+/* Die Pfeile sitzen direkt neben dem Foto statt am äußeren Rand.
+   Die Fotos sind Hochformat (2:3). Im quadratischen Rahmen am Handy bleibt
+   links und rechts je 1/6 der Breite frei. Davon ziehen wir die Pfeilbreite
+   (2.75rem) und einen kleinen Abstand (0.5rem) ab.
+   max(...) sorgt dafür, dass der Pfeil nie ganz an den Bildschirmrand stößt. */
+.slideshow-fenster {
+  --pfeil-abstand: max(0.5rem, calc(100cqw / 6 - 3.25rem));
+}
+
 .slideshow-pfeil-zurueck {
-  left: 0.75rem;
+  left: var(--pfeil-abstand);
 }
 
 .slideshow-pfeil-weiter {
-  right: 0.75rem;
+  right: var(--pfeil-abstand);
 }
 
 /* Pause-Knopf: rechts in derselben Zeile wie "Nr. 07"
@@ -725,6 +739,30 @@ main {
 
 .mehr-link:hover span {
   transform: translateX(0.3rem);
+}
+
+/* ---- Zurück-Link "← Zur Startseite" (oben auf der Adventskalender-Seite) ---- */
+.zurueck-link-zeile {
+  margin: 1rem 0 0;
+}
+
+.zurueck-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;           /* groß genug zum Antippen */
+  font-family: var(--schrift-akzent);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.zurueck-link span {
+  transition: transform 0.2s ease;
+}
+
+/* Pfeil rutscht beim Drüberfahren leicht nach links */
+.zurueck-link:hover span {
+  transform: translateX(-0.3rem);
 }
 
 /* ---- Losnummern 1–24 (rote Felder unter der Slideshow) ---- */
@@ -976,7 +1014,7 @@ a.kachel:hover .kachel-titel::after {
   }
 
   /* Am Laptop Querformat, damit die Slideshow auf den Bildschirm passt.
-     Das Werk bleibt ganz sichtbar, links und rechts ist dann Beige. */
+     Das Werk bleibt ganz sichtbar, links und rechts ist dann Hintergrund. */
   .dia img {
     aspect-ratio: 4 / 3;
   }
@@ -984,6 +1022,12 @@ a.kachel:hover .kachel-titel::after {
   /* Pfeile mittig auf dem Bild (Höhe = 3/4 der Breite, Mitte also bei 3/8) */
   .slideshow-pfeil {
     top: 37.5cqw;
+  }
+
+  /* Im Querformat-Rahmen ist das Hochformat-Foto halb so breit wie der Rahmen,
+     links und rechts bleibt also je 1/4 frei: Pfeile dorthin, nah ans Foto */
+  .slideshow-fenster {
+    --pfeil-abstand: max(0.5rem, calc(25cqw - 3.25rem));
   }
 
   .dia-beschriftung {
@@ -1147,8 +1191,7 @@ a.kachel:hover .kachel-titel::after {
 .raster-knopf img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: contain;
-  background-color: var(--farbe-flaeche);
+  object-fit: contain;           /* ganzes Werk sichtbar, ohne farbigen Rand */
   transition: opacity 0.2s ease;
 }
 
@@ -1206,7 +1249,7 @@ html.lightbox-offen {
   margin: 0;
   padding: 0;
   border: 0;
-  background-color: var(--farbe-papier);
+  background-color: var(--farbe-hintergrund);
   color: var(--farbe-anthrazit);
 }
 
@@ -1236,8 +1279,7 @@ html.lightbox-offen {
      dvh = Höhe des sichtbaren Bereichs am Handy (ohne Browser-Leiste). */
   max-height: calc(100vh - 9rem);
   max-height: calc(100dvh - 9rem);
-  object-fit: contain;
-  background-color: var(--farbe-flaeche);
+  object-fit: contain;           /* nur das Bild selbst, ohne farbigen Rand */
 }
 
 .lightbox-beschriftung {

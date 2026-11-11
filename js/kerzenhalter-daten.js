@@ -18,7 +18,7 @@
    ========================================================================== */
 
 const KERZENHALTER = [
-  { nummer: "01", bild: "bilder/kerzenhalter/kerzenhalter-01.jpg", beschreibung: "[PLATZHALTER: Beispiel-Beschreibung, z. B. Fuchs mit langem Schwanz]" },
+  { nummer: "01", bild: "bilder/kerzenhalter/kerzenhalter-01.jpg", beschreibung: "" },
   { nummer: "02", bild: "bilder/kerzenhalter/kerzenhalter-02.jpg", beschreibung: "" },
   { nummer: "03", bild: "bilder/kerzenhalter/kerzenhalter-03.jpg", beschreibung: "" },
   { nummer: "04", bild: "bilder/kerzenhalter/kerzenhalter-04.jpg", beschreibung: "" },
