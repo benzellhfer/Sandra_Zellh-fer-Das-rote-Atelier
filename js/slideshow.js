@@ -65,8 +65,10 @@ if (slideshow && typeof KERZENHALTER !== "undefined") {
 
     const bild = document.createElement("img");
     bild.src = kerzenhalter.bild;
+    // Bildbeschreibung für Google-Bildersuche und Bildschirmleser
     bild.alt = "Kerzenhalter Nr. " + kerzenhalter.nummer +
-      (kerzenhalter.beschreibung ? ": " + kerzenhalter.beschreibung : "");
+      (kerzenhalter.beschreibung ? ": " + kerzenhalter.beschreibung : "") +
+      " – handgetöpferte Tierfigur aus Keramik von Sandra Zellhöfer";
     bild.width = 1000;
     bild.height = 1000;
     bild.decoding = "async";

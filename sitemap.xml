@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Liste aller Seiten für Suchmaschinen.
+     Neue Seite? Einen <url>-Block kopieren und die Adresse anpassen.
+     lastmod = Datum der letzten Änderung (Jahr-Monat-Tag). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://das-rote-atelier.de/</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/adventsaktion.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/skulpturen.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/keramik.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/malerei.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/ueber-mich.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/danke.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/kontakt.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/impressum.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://das-rote-atelier.de/datenschutz.html</loc>
+    <lastmod>2026-11-22</lastmod>
+  </url>
+</urlset>

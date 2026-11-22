@@ -1,0 +1,7 @@
+# Anweisungen für Suchmaschinen (Google, Bing …)
+# Alle Seiten dürfen gelesen werden.
+User-agent: *
+Allow: /
+
+# Hier steht die Liste aller Seiten:
+Sitemap: https://das-rote-atelier.de/sitemap.xml

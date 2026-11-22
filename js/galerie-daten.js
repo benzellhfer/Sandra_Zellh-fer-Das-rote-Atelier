@@ -23,6 +23,11 @@
      titel  – optional: Titel des Werks, z. B. "Liegender Hund, 2024".
               Leer lassen ("") wenn es keinen Titel geben soll.
               Der Titel erscheint in der Großansicht (Lightbox).
+     alt    – optional: kurze Bildbeschreibung, z. B. "Kuh aus Keramik auf Sockel".
+              Sie ist nicht zu sehen, wird aber von Google (Bildersuche) und
+              von Vorleseprogrammen für Blinde gelesen. " – von Sandra Zellhöfer"
+              wird automatisch angehängt. Fehlt sie, wird sie aus Werkreihe
+              und Seite gebildet, z. B. "Rauchbrand – Keramik".
      breite, hoehe – optional: Größe des Bildes in Pixeln (im Finder:
               Bild auswählen, Cmd+I, "Weitere Informationen" → "Abmessungen").
               Damit steht die Anordnung sofort richtig. Lässt du beides weg,
@@ -119,15 +124,15 @@ const GALERIEN = {
       grossLinks: true,
       reihen: [3, 3],
       bilder: [
-        { bild: "bilder/skulpturen/standhaft/esel.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/standhaft/esel.jpg", titel: "", alt: "Esel aus Keramik auf Sockel", breite: 1024, hoehe: 1536 },
         // rechts, Reihe 1
-        { bild: "bilder/skulpturen/standhaft/hund.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/standhaft/stacheltier.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/standhaft/nilpferd.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/standhaft/hund.jpg", titel: "", alt: "Hund aus Keramik auf Sockel", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/standhaft/stacheltier.jpg", titel: "", alt: "Stacheltier aus Keramik", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/standhaft/nilpferd.jpg", titel: "", alt: "Nilpferd aus Keramik", breite: 1536, hoehe: 1024 },
         // rechts, Reihe 2
-        { bild: "bilder/skulpturen/standhaft/tapir-mutter.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/standhaft/tapir-mutter-und-kind.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/standhaft/fuchs.jpg", titel: "", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/standhaft/kuh.jpg", titel: "", alt: "Kuh aus Keramik auf Sockel", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/standhaft/tapir-mutter-und-kind.jpg", titel: "", alt: "Tapir-Mutter mit Jungtier aus Keramik", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/standhaft/fuchs.jpg", titel: "", alt: "Fuchs aus Keramik", breite: 1536, hoehe: 1024 },
       ]
     },
     {
@@ -148,12 +153,12 @@ const GALERIEN = {
       // Zwei Reihen mit je 3 Bildern
       reihen: [3, 3],
       bilder: [
-        { bild: "bilder/skulpturen/zwiegespraeche/mann-in-wanne.jpg", titel: "", breite: 1536, hoehe: 1024 },
-        { bild: "bilder/skulpturen/zwiegespraeche/dicke-im-badeanzug.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/zwiegespraeche/kamel-hoch.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/zwiegespraeche/frau-auf-stiefel.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/zwiegespraeche/gruppe.jpg", titel: "", breite: 1536, hoehe: 1024 },
-        { bild: "bilder/skulpturen/zwiegespraeche/mann-mit-schnecke.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/mann-in-wanne.jpg", titel: "", alt: "Keramikfigur: Mann in der Badewanne", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/dicke-im-badeanzug.jpg", titel: "", alt: "Keramikfigur: Frau im Badeanzug", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/kamel-hoch.jpg", titel: "", alt: "Kamel aus Keramik auf Sockel", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/frau-auf-stiefel.jpg", titel: "", alt: "Keramikfigur: Frau auf einem Stiefel", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/zwiegespraeche/gruppe.jpg", titel: "", alt: "Gruppe von Keramikfiguren auf Sockeln", breite: 1536, hoehe: 1024 },
+        { bild: "bilder/skulpturen/zwiegespraeche/mann-mit-schnecke.jpg", titel: "", alt: "Keramikfigur: Mann mit Schnecke", breite: 1024, hoehe: 1536 },
       ]
     },
     {
@@ -163,24 +168,24 @@ const GALERIEN = {
       // doppelt so groß (siehe Erklärung oben in dieser Datei)
       feld: true,
       bilder: [
-        { bild: "bilder/skulpturen/tierisch-hell/schildkroete.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/baer.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/zwei-dackel.jpg", titel: "", breite: 1024, hoehe: 1536, gross: true },
-        { bild: "bilder/skulpturen/tierisch-hell/zwei-elefanten.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/schildkroete.jpg", titel: "", alt: "Schildkröte aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/baer.jpg", titel: "", alt: "Bär aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/zwei-dackel.jpg", titel: "", alt: "Zwei Dackel aus hellem Ton", breite: 1024, hoehe: 1536, gross: true },
+        { bild: "bilder/skulpturen/tierisch-hell/zwei-elefanten.jpg", titel: "", alt: "Zwei Elefanten aus hellem Ton", breite: 1024, hoehe: 1536 },
         { bild: "bilder/skulpturen/tierisch-hell/breitmaul.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/hund-pinkelt.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/wildschwein.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/fisch.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/zwei-wale.jpg", titel: "", breite: 1024, hoehe: 1536, gross: true },
-        { bild: "bilder/skulpturen/tierisch-hell/kleines-schwein.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/vogelfamilie.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/ziege-und-schwein.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/schaf-esel-schwein.jpg", titel: "", breite: 1024, hoehe: 1536, gross: true },
-        { bild: "bilder/skulpturen/tierisch-hell/hund-schwarz-weiss.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/schwein-fleckig.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/vogel-und-schnecke.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/schwein-schlappohr.jpg", titel: "", breite: 1024, hoehe: 1536 },
-        { bild: "bilder/skulpturen/tierisch-hell/affe.jpg", titel: "", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/hund-pinkelt.jpg", titel: "", alt: "Hund aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/wildschwein.jpg", titel: "", alt: "Wildschwein aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/fisch.jpg", titel: "", alt: "Fisch aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/zwei-wale.jpg", titel: "", alt: "Zwei Wale aus hellem Ton", breite: 1024, hoehe: 1536, gross: true },
+        { bild: "bilder/skulpturen/tierisch-hell/kleines-schwein.jpg", titel: "", alt: "Kleines Schwein aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/vogelfamilie.jpg", titel: "", alt: "Vogelfamilie aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/ziege-und-schwein.jpg", titel: "", alt: "Ziege und Schwein aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/schaf-esel-schwein.jpg", titel: "", alt: "Schaf, Esel und Schwein aus hellem Ton", breite: 1024, hoehe: 1536, gross: true },
+        { bild: "bilder/skulpturen/tierisch-hell/hund-schwarz-weiss.jpg", titel: "", alt: "Schwarz-weißer Hund aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/schwein-fleckig.jpg", titel: "", alt: "Geflecktes Schwein aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/vogel-und-schnecke.jpg", titel: "", alt: "Vogel und Schnecke aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/schwein-schlappohr.jpg", titel: "", alt: "Schwein mit Schlappohren aus hellem Ton", breite: 1024, hoehe: 1536 },
+        { bild: "bilder/skulpturen/tierisch-hell/affe.jpg", titel: "", alt: "Affe aus hellem Ton", breite: 1024, hoehe: 1536 },
       ]
     },
   ],
@@ -224,8 +229,8 @@ const GALERIEN = {
       reihe: "Stille Ferne",
       text: "Pinsel, Acryl auf Papier.",
       bilder: [
-        { bild: "bilder/malerei/stille-ferne/gewitter.jpg", titel: "", breite: 885, hoehe: 1169 },
-        { bild: "bilder/malerei/stille-ferne/irland.jpg", titel: "", breite: 899, hoehe: 1191 },
+        { bild: "bilder/malerei/stille-ferne/gewitter.jpg", titel: "", alt: "Gewitterlandschaft, Acryl auf Papier", breite: 885, hoehe: 1169 },
+        { bild: "bilder/malerei/stille-ferne/irland.jpg", titel: "", alt: "Landschaft in Irland, Acryl auf Papier", breite: 899, hoehe: 1191 },
       ]
     },
     {
@@ -234,8 +239,8 @@ const GALERIEN = {
       // Neben der vorigen Werkreihe (Stille Ferne) anzeigen statt darunter
       nebenVoriger: true,
       bilder: [
-        { bild: "bilder/malerei/blueten-abstrakt/bluete-weiss.jpg", titel: "", breite: 1179, hoehe: 1600 },
-        { bild: "bilder/malerei/blueten-abstrakt/bluete-pink.jpg", titel: "", breite: 999, hoehe: 1468 },
+        { bild: "bilder/malerei/blueten-abstrakt/bluete-weiss.jpg", titel: "", alt: "Weiße Blüte, abstrakt, Acryl gespachtelt", breite: 1179, hoehe: 1600 },
+        { bild: "bilder/malerei/blueten-abstrakt/bluete-pink.jpg", titel: "", alt: "Pinke Blüte, abstrakt, Acryl gespachtelt", breite: 999, hoehe: 1468 },
       ]
     },
     {

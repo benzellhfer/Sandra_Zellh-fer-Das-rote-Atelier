@@ -31,7 +31,10 @@ if (kerzenhalterRaster && typeof KERZENHALTER !== "undefined") {
 
     const bild = document.createElement("img");
     bild.src = kerzenhalter.bild;
-    bild.alt = "";               // die Beschriftung steht schon im aria-label des Knopfs
+    // Bildbeschreibung für Google-Bildersuche und Bildschirmleser
+    bild.alt = "Kerzenhalter Nr. " + kerzenhalter.nummer +
+      (kerzenhalter.beschreibung ? ": " + kerzenhalter.beschreibung : "") +
+      " – handgetöpferte Tierfigur aus Keramik von Sandra Zellhöfer";
     bild.width = 1000;
     bild.height = 1000;
     bild.loading = "lazy";       // erst laden, wenn man hinscrollt (spart mobile Daten)

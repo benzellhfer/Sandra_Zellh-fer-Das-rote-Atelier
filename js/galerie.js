@@ -229,6 +229,14 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
   // Welche Galerie? Steht im HTML bei data-galerie="…"
   const werkreihen = GALERIEN[galerieBereich.dataset.galerie] || [];
 
+  // Art der Werke je Seite – für die Bildbeschreibungen (alt-Text), die
+  // Google und Bildschirmleser lesen, z. B. "Rauchbrand – Keramik von …"
+  const werkArt = {
+    keramik: "Keramik",
+    skulpturen: "Skulptur aus Keramik",
+    malerei: "Malerei"
+  }[galerieBereich.dataset.galerie] || "Werk";
+
   werkreihen.forEach(function (werkreihe) {
     const abschnitt = document.createElement("section");
     abschnitt.className = "werkreihe";
@@ -256,10 +264,18 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
     // Liste für die Lightbox: man blättert innerhalb der Werkreihe.
     // "titel" bleibt leer (der ist in der Lightbox für Nummern wie "Nr. 07"
     // gedacht), Werktitel und Werkreihe stehen im normalen Text darunter.
+    // Bildbeschreibung (alt-Text): das Feld "alt" aus galerie-daten.js,
+    // sonst automatisch aus Werkreihe und Art, z. B.
+    // "Kuh aus Keramik auf Sockel – von Sandra Zellhöfer"
+    function bildBeschreibung(eintrag) {
+      const was = eintrag.alt || eintrag.titel || (anzeigeName + " – " + werkArt);
+      return was + " – von Sandra Zellhöfer";
+    }
+
     const lightboxBilder = werkreihe.bilder.map(function (eintrag) {
       return {
         bild: eintrag.bild,
-        alt: eintrag.titel || anzeigeName,
+        alt: bildBeschreibung(eintrag),
         titel: "",
         text: eintrag.titel ? eintrag.titel + " · " + anzeigeName : anzeigeName
       };
@@ -284,7 +300,7 @@ if (galerieBereich && typeof GALERIEN !== "undefined") {
 
       const bild = document.createElement("img");
       bild.src = eintrag.bild;
-      bild.alt = "";             // Beschriftung steht im aria-label des Knopfs
+      bild.alt = bildBeschreibung(eintrag);   // für Google-Bildersuche und Bildschirmleser
       bild.loading = "lazy";     // erst laden, wenn man hinscrollt
       bild.decoding = "async";
       knopf.appendChild(bild);
